@@ -44,7 +44,11 @@ class BaseJs {
         //Hiển thị thông tin chi tiết khi nhấn đúp chuột vô 1 bản ghi
         $('table tbody').on('dblclick', 'tr', me.btnDblClick.bind(me));
 
-        //#region xóa màu ở dòng click khi đóng dialog
+        $('table tbody').on('click', 'tr', function () {
+            alert("xin chào");
+        });
+
+        //#region đóng dialog và xóa màu ở dòng click
         $('#btnClose').click(function () {
             dialogDefault.dialog('close');
             $('tr.row-click').removeClass("row-click");
