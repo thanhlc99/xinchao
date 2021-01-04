@@ -1,0 +1,43 @@
+﻿.grid {
+    width: 100%;
+    height: 200px;
+    position: relative;
+}
+
+table {
+    width: 100%;
+}
+
+    table th {
+        position: sticky;
+        top: 0px;
+        background: #fff;
+    }
+
+    table th, td {
+        border-bottom: 1px solid #bbbbbb;
+        padding: 10px 16px;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.table-scroll tbody tr:hover {
+    background-color: #BBBBBB !important;
+}
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.address{
+    max-width:250px;
+}
+
+.row-click {
+    background-color: #EBF9F4 !important;
+}

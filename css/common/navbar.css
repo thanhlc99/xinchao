@@ -1,0 +1,103 @@
+﻿@font-face {
+    font-family: 'GoogleSans-Regular';
+    src: url('/content/font/GoogleSans-Regular.otf') format('opentype');
+}
+@font-face {
+    font-family: 'GoogleSans-Medium';
+    src: url('/content/font/GoogleSans-Medium.otf') format('opentype');
+}
+.navbar {
+    float: left;
+    width: 220px;
+    background: #FFFFFF;
+    border-right: 1px solid #E5E5E5;
+    height: 100vh;
+    
+}
+    /*=====================logo page=====================*/
+    .navbar .logo-site {
+        display: flex;
+        width: 100%;
+        height: 61px;
+    }
+
+    .navbar .logo-box {
+        display: flex;
+        position: absolute;
+        top: 12px;
+        left: 16px;
+        width: 90%;
+    }
+
+    .navbar .logo-site .toggle-icon {
+        width: 24px;
+        height: 24px;
+        padding-right: 10px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url('/content/img/toggle.png');
+    }
+
+    .navbar .logo-site .amis-icon {
+        width: calc(100% - 50px);
+        height: 24px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url('/content/img/cukcuk-logo.png');
+    }
+    /*===================end logo page===================*/
+
+    /*========================menu left=====================*/
+
+.navbar .navbar-content {
+    width: 100%;
+}
+
+    .navbar .navbar-content .nav-item {
+        display: flex;
+        padding-left: 16px;
+        height: 44px;
+        cursor: pointer;
+        line-height: 44px;
+        text-decoration: none;
+        color:#000000;
+    }
+
+            .navbar .navbar-content .nav-item:hover {
+                background-color: #e5e5e5;
+                color: #000000;
+                font-family: GoogleSans-Medium;
+            }
+
+.nav-item .nav-item-icon {
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    align-self: center;
+    margin-right: 10px;
+}
+
+.nav-icon-1 {
+    background-image: url('/content/icon/dashboard.png');
+}
+
+.nav-icon-2 {
+    background-image: url('/content/icon/report.png');
+}
+
+.nav-icon-3 {
+    background-image: url('/content/icon/dashboard.png');
+}
+
+.nav-icon-4 {
+    background-image: url('/content/icon/dic-employee.png');
+}
+
+.nav-icon-5 {
+    background-image: url('/content/icon/dic-employee.png');
+}
+
+.nav-icon-6 {
+    background-image: url('/content/icon/setting.png');
+}
+/*=====================end menu left====================*/

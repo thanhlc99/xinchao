@@ -1,0 +1,301 @@
+
+/*================css content dialog=============*/
+.m-content {
+    width: 700px;
+    padding-bottom: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+    .m-content input {
+       color: #000000!important;
+    }
+    .m-dialog .m-dialog-content {
+        position: absolute;
+        width: 800px;
+        height: 690px;
+        z-index: 2;
+        border-radius: 4px;
+        top: calc(50% - 340px);
+        left: calc(50% - 400px);
+        background-color: #ffffff;
+    }
+
+.dialog-header .dialog-header-title {
+    font-weight: bold;
+    font-size: 20px;
+    color: #000000;
+    font-family: GoogleSans-Regular;
+    margin-bottom: 24px;
+}
+
+.dialog-header .dialog-header-btn button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: #ffffff;
+    border-radius: 4px;
+    background-image: url('/content/icon/x.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.dialog-header .dialog-header-btn:hover button {
+    background-color: #E9EBEE;
+}
+
+.m-content_top {
+    display: flex;
+}
+
+.dialog-img {
+    width: 200px;
+    height: 250px;
+}
+
+    .dialog-img img {
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+        border: 1px solid #E9EBEE;
+    }
+
+.m-row, .m-row2 {
+    margin-top: 16px;
+    margin-left: 16px;
+}
+.m-row3, .m-row1 {
+    margin-top: 16px;
+}
+.m-row .m-row2, p span {
+    color: #F65454;
+}
+.m-row .m-row2 .m-row1, p{
+    margin:0 0 4px 0!important;
+}
+.m-content_center {
+    display: flex;
+}
+
+.m-row1 input {
+    width: 416px !important;
+}
+
+.m-row3 input {
+    width: 666px !important;
+}
+
+.m-dialog_footer {
+    display: flex;
+    height: 60px;
+    background-color: #E9EBEE;
+    width: 100%;
+}
+
+    .m-dialog_footer .footer_content {
+        position: absolute;
+        right: 8px;
+    }
+
+        .m-dialog_footer .footer_content button {
+            height: 36px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            margin-right: 16px;
+            width: 100px;
+        }
+
+.m-delete {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transform: translateY(-2px);
+    background-color: #E9EBEE;
+    border-radius: 4px;
+}
+    .m-delete:hover {
+        background-color: #bbbbbb;
+    }
+    .m-add {
+        display: inline-flex !important;
+    }
+/*=============end css content dialog===============*/
+
+/* ==================css cho jquery dialog================*/
+.ui-widget {
+    font-family: GoogleSans-Regular;
+    font-size: 13px;
+}
+
+.ui-widget-content {
+    background: #ffffff;
+    /*Change the dialog border color here*/
+    color: #000000;
+}
+
+.ui-dialog {
+    left: 0;
+    outline: 0 none;
+    padding: 0 !important;
+    position: absolute;
+    top: 0;
+}
+
+#dialog1 p {
+    padding: 0;
+    margin: 0;
+}
+
+.ui-dialog .ui-dialog-content {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    overflow: auto;
+    position: relative;
+    padding: 0 !important;
+}
+
+.ui-widget-header {
+    /*Change the Header color here*/
+    background: #fff;
+    border: 0;
+    color: #000000;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    margin: 24px;
+    font-weight: bold;
+    position: relative;
+    font-size: 15px;
+    padding:0;
+}
+
+.ui-button {
+    position: absolute !important;
+    top: -14px !important;
+    right: -24px!important;
+    border:none;
+    background-color:#fff;
+}
+    .ui-button:hover {
+        background-color: #BBBBBB;
+    }
+/* ================End css cho jquery dialog================*/
+/*============icon load================*/
+    .load {
+        display: none;
+    }
+.loading {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: .5;
+    z-index: 102;
+}
+
+.load_icoin {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
+    border: 2px solid #00ff90;
+    border-bottom: none;
+    z-index: 102;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/*============end icon load================*/
+/*============notification================*/
+.success {
+    display: none;
+    background-color: #01B075;
+    width: 200px;
+    height: 50px;
+    z-index: 10;
+    border-radius: 20px;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+}
+.error {
+    display: none;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    z-index: 10;
+    width: 200px;
+    border-radius: 20px;
+    height: 50px;
+    background-color: #F65454;
+}
+.title_notification {
+    line-height: 50px;
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+}
+.pop-up-notification {
+    display:none;
+    height: 167px;
+    width: 350px;
+    z-index: 105;
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    background-color: #fff;
+    border-radius: 4px;
+    color: #000000;
+    border: 1px solid #BBBBBB;
+}
+.cancel{
+    width:24px;
+    height:24px;
+    position:absolute;
+    top:0;
+    right:0;
+    text-align:center;
+    line-height:24px;
+    cursor:pointer;
+}
+    .cancel:hover {
+        background-color: #E5E5E5;
+        border-radius:4px;
+    }
+.title_not{
+    margin:24px;
+    font-weight:bold;
+    font-size:15px!important;
+}
+.content_not{
+    margin-bottom:24px;
+    margin-left:24px;
+    margin-right:24px;
+}
+.header_not {
+    height: 60px;
+    width: 100%;
+    background-color: #E5E5E5;
+}
+.m-cancel{
+    position:absolute;
+    bottom:10px;
+    right:24px;
+}
+/*============end notification================*/

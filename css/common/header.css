@@ -1,0 +1,61 @@
+﻿@font-face {
+    font-family: 'GoogleSans-Bold';
+    src: url('/content/font/GoogleSans-Bold.otf') format('opentype');
+}
+.header {
+    float: left;
+    width: calc(100% - 221px);
+    height: 60px;
+    border-bottom: 1px solid #E5E5E5;
+    display: flex;
+}
+/*=========================left======================*/
+#left-header {
+    margin-left: 16px;
+    align-items: center;
+    display: flex;
+}
+select {
+    -webkit-appearance: button;
+    -webkit-border-radius: 2px;
+    -webkit-padding-end: 12px;
+    -webkit-user-select: none;
+    border-style: none;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/*=====================end left============================*/
+/*=======================right=============================*/
+#right-header {
+    position: absolute;
+    right: 16px;
+    display: flex;
+    line-height: 60px;
+}
+    #right-header .right-header-img {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #E5E5E5;
+        background-image: url('/content/icon/avatar-default.png');
+        border-radius: 20px;
+        background-size:contain;
+        background-repeat:no-repeat;
+        margin-right:16px;
+    }
+    #right-header .right-header-text {
+        margin-right: 16px;
+    }
+    #right-header .right-header-icon {
+        width: 15px;
+        height: 15px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url('/content/icon/option.png');
+        cursor: pointer;
+    }
+
+.img_icon {
+    align-self: center;
+}
+/*==============================end right=====================*/
