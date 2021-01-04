@@ -110,9 +110,9 @@
                 <input class="icon-search input-search" type="text" placeholder="Tìm kiếm theo Mã, Tên khác" />
             </div>
             <div class="filter-right">
+                <button class=" m-second-button m-btn-refresh img" id="btnRefresh"></button>
                 <button class=" m-second-button m-btn-refresh" id="btnRefresh">
                 </button>
-
             </div>
         </div>
         <!--end filter bar-->
@@ -161,6 +161,7 @@
     <!--=================end content==========-->
     <!--=========dialog add information=========-->
     <div id="m-dialog" class="dialog1" title="THÔNG TIN KHÁCH HÀNG">
+       
         <div class="m-dialog-content">
             <div class="m-content">
                 <div class="m-content_top">
@@ -194,7 +195,9 @@
                         <div class="m-row custom-select">
                             <p>Nhóm khách hàng</p>
                             <select id="CustomerGroupName" valueName="CustomerGroupName" style="width:200px;">
+
                             </select>
+                            <dropdown id="ddCustomerGroupName" api="/customergroups" fieldName="CustomerGroupId" valueName="CustomerGroupName"></dropdown>
                         </div>
                         <div class="m-row">
                             <p>Giới tính</p>
@@ -247,6 +250,7 @@
                     </button>
                 </div>
             </div>
+
         </div>
     </div>
     <!--==========End dialog add information===========-->

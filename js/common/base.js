@@ -22,7 +22,7 @@ class BaseJs {
     }
 
     /**======================================
-    * Hàm chứa các sự kiện trong form
+    * Hàm xét đường dẫn lấy dữ liệu dropdown
     * Created by mvthanh (26/12/2020)
     **/
     setDataUrl() {
@@ -44,19 +44,28 @@ class BaseJs {
         //Hiển thị thông tin chi tiết khi nhấn đúp chuột vô 1 bản ghi
         $('table tbody').on('dblclick', 'tr', me.btnDblClick.bind(me));
 
-
+        //#region xóa màu ở dòng click khi đóng dialog
         $('#btnClose').click(function () {
             dialogDefault.dialog('close');
             $('tr.row-click').removeClass("row-click");
         })
 
+        $('div#m-dialog').on('dialogclose', function (event) {
+            $('tr.row-click').removeClass("row-click");
+        });
+
+        //#endregion
+
+        //#region đóng pop-up cảnh báo nhập dữ liệu không hợp lệ
         $('.cancel').click(function () {
             $('.pop-up-notification').slideUp(1000);
         })
         $('.m-cancel').click(function () {
             $('.pop-up-notification').slideUp(1000);
         })
+        //#endregion
 
+        //#region validate(kiểm tra) dữ liệu nhập vào(input[text] or [email])
         //validate dữ liệu input
         $('input[required]').blur(function () {
             var value = $(this).val();
@@ -84,6 +93,7 @@ class BaseJs {
                 $(this).removeClass('border-red');
             }
         })
+        //#endregion
 
         //sự kiến ấn nút lưu
         $('#btnSave').click(me.btnSaveOnClick.bind(me));
@@ -119,10 +129,10 @@ class BaseJs {
         }).done(function (res) {
 
             $.each(res, function (index, obj) {
-
+                
                 var tr = $(`<tr></tr>`);
                 $(tr).data('objId', obj.CustomerId);
-
+                
                 $.each(columns, function (index, th) {
                     var td = $(`<td></td>`);
                     var fielNames = $(th).attr('fieldName');//lấy cái để map dữ liệu vào
@@ -166,7 +176,7 @@ class BaseJs {
             me.formMethod = "Add";
             //hiển thị dialog thêm thông tin
             dialogDefault.dialog('open');
-            $('input').val(null);
+            $('input[type="text"]').val(null);
             //load dữ liệu select box
             var select = $('select#CustomerGroupName');
             select.empty();
@@ -216,6 +226,7 @@ class BaseJs {
             var objCustomers = {};
             var inputs = $('input[valueName],select[valueName]');//select tất cả các thẻ input
             $.each(inputs, function (index, value) {
+                
                 var propertieName = $(this).attr('valueName');
                 var valueCustomer = $(this).val();
                 if ($(this).attr('type') == "radio") {
@@ -233,9 +244,8 @@ class BaseJs {
             if (me.formMethod == "Edit") {
                 method = "PUT";
                 objCustomers.CustomerId = me.objId;
-                console.log(objCustomers);
             }
-
+            console.log(objCustomers);
             //gọi service thực hiện lưu
             $.ajax({
                 url: me.hostNV + me.domainNV,
@@ -267,32 +277,39 @@ class BaseJs {
    * Hàm chức năng hiển thị thông tin chi tiết khi nhấn đúp chuột vô 1 bản ghi
    * Created by mvthanh (26/12/2020)
    * */
-    btnDblClick() {
+    btnDblClick(e) {
         var me = this;
         try {
-            $(this).addClass("row-click");
+            $(e.currentTarget).addClass("row-click");
             //load dữ liệu form
-            var select = $('select#CustomerGroupName');
+            var select = $('select[valueName]');
+            var selects = $('dropdown[valueName]');
             select.empty();
-            $('#load').show();
-            $.ajax({
-                url: me.hostNV + "/customergroups",
-                method: "GET"
-            }).done(function (res) {
-                if (res) {
-                    $.each(res, function (index, value) {
-                        var option = $(`<option value="${value.CustomerGroupId}">${value.CustomerGroupName}</option>`);
-                        select.append(option);
-                    })
-                }
-                $('#load').hide();
-            }).fail(function (res) {
-                $('#load').hide();
-            })
+            $.each(selects, function (index, value) {
+                var api = $('dropdown').attr('api');
+                var fieldName = $('dropdown').attr('fieldName');
+                var fieldValue = $('dropdown').attr('valueName');
 
+
+                $('#load').show();
+                $.ajax({
+                    url: me.hostNV + api,
+                    method: "GET"
+                }).done(function (res) {
+                    if (res) {
+                        $.each(res, function (index, value) {
+                            var option = $(`<option value="${value[fieldName]}">${value[fieldValue]}</option>`);
+                            select.append(option);
+                        })
+                    }
+                    $('#load').hide();
+                }).fail(function (res) {
+                    $('#load').hide();
+                })
+            })
             me.formMethod = "Edit";
             //lấy khóa chính của bản ghi
-            var objId = $(this).data('objId');
+            var objId = $(e.currentTarget).data('objId');
             me.objId = objId;
             //gọi service lấy obj
             $.ajax({

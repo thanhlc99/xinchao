@@ -47,4 +47,7 @@
     height: 40px;
     background-position: center;
 }
+.img {
+    background-image: url('/content/icon/trash-icon.png');
+}
 /*================ end page title content=======================*/
