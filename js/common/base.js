@@ -44,9 +44,7 @@ class BaseJs {
         //Hiển thị thông tin chi tiết khi nhấn đúp chuột vô 1 bản ghi
         $('table tbody').on('dblclick', 'tr', me.btnDblClick.bind(me));
 
-        $('table tbody').on('click', 'tr', function () {
-            alert("xin chào");
-        });
+       
 
         //#region đóng dialog và xóa màu ở dòng click
         $('#btnClose').click(function () {
@@ -180,7 +178,8 @@ class BaseJs {
             me.formMethod = "Add";
             //hiển thị dialog thêm thông tin
             dialogDefault.dialog('open');
-            $('input[type="text"]').val(null);
+            $('input:not(input[type="radio"])').val(null);
+            $('#btnDelete').addClass("m-hide");
             //load dữ liệu select box
             var select = $('select#CustomerGroupName');
             select.empty();
@@ -258,15 +257,16 @@ class BaseJs {
                 contentType: "application/json"
             }).done(function (res) {
                 if (res) {
-                    $('.success').fadeIn(1000);
-                    $('.success').delay(1000).slideUp(1000);
+                    $('#success').removeClass("m-hide");
+                    $('#success').fadeIn(1000);
+                    $('#success').delay(1000).slideUp(1000);
                     dialogDefault.dialog('close');
                     $('table tbody tr').empty();
                     me.loadData();
                 }
             }).fail(function (res) {
-                $('.error').fadeIn(1000);
-                $('.error').delay(1000).slideUp(1000);
+                $('#error').fadeIn(1000);
+                $('#error').delay(1000).slideUp(1000);
                 console.log(res);
             })
 
@@ -284,7 +284,9 @@ class BaseJs {
     btnDblClick(e) {
         var me = this;
         try {
+           
             $(e.currentTarget).addClass("row-click");
+            $('#btnDelete').removeClass("m-hide");
             //load dữ liệu form
             var select = $('select[valueName]');
             var selects = $('dropdown[valueName]');
@@ -321,28 +323,41 @@ class BaseJs {
                 method: "GET"
             }).done(function (res) {
 
-                //binding dữ liệu lên form chi tiết
+                //hiển thị dữ liệu lên form chi tiết
                 var inputs = $('input[valueName],select[valueName]');//select tất cả các thẻ input
                 var entity = {};
                 $.each(inputs, function (index, value) {
                     var propertieName = $(this).attr('valueName');
                     var value = res[propertieName];
+
                     if (propertieName == "DateOfBirth") {
-                        value = formatYYMMDD(res[propertieName]);
+                        value = formatYYMMDD(res[propertieName]);//hiển thị dữ liệu lên text datetime
                     }
+                    
+                    //hiển thị dữ liệu giới tính
                     if (propertieName == "Gender") {
                         if (res[propertieName] == "1") {
                             $('input[title="nữ"]').prop('checked', false);
                             $('input[title="nam"]').prop('checked', true);
+                           
                         }
-                        if (res[propertieName] == "0") {
+                        else if (res[propertieName] == "0") {
                             $('input[title="nam"]').prop('checked', false);
                             $('input[title="nữ"]').prop('checked', true);
+                            
+                        }
+                        else if (res[propertieName] != "0" && res[propertieName] != "1") {
+                            $('input[title="nam"]').prop('checked', false);
+                            $('input[title="nữ"]').prop('checked', false);
+                            $('input[title="khác"]').prop('checked', true);
+                           
                         }
                     }
                     $(this).val(value);
                 })
-
+                $('input[title="nam"]').val("0");
+                $('input[title="nữ"]').val("1");
+                $('input[title="khác"]').val("2");
             }).fail(function (res) {
                 console.log(res);
             })

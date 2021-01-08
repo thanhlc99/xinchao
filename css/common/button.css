@@ -12,10 +12,7 @@
     border:none;
     cursor:pointer;
 }
-@font-face {
-    font-family: 'GoogleSans-Regular';
-    src: url('/content/font/GoogleSans-Regular.otf') format('opentype');
-}
+
 /*================page title content=======================*/
 .m-btn .btn-text {
     margin-left: 8px;
@@ -47,7 +44,5 @@
     height: 40px;
     background-position: center;
 }
-.img {
-    background-image: url('/content/icon/trash-icon.png');
-}
+
 /*================ end page title content=======================*/
