@@ -47,7 +47,7 @@ class BaseJs {
        
 
         //#region đóng dialog và xóa màu ở dòng click
-        $('#btnClose').click(function () {
+        $('#btnclose').click(function () {
             dialogDefault.dialog('close');
             $('tr.row-click').removeClass("row-click");
         })

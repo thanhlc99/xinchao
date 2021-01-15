@@ -160,7 +160,6 @@
     <!--=================end content==========-->
     <!--=========dialog add information=========-->
     <div id="m-dialog" class="dialog1" title="THÔNG TIN KHÁCH HÀNG">
-
         <div class="m-dialog-content">
             <div class="m-content">
                 <div class="m-content_top">
@@ -168,7 +167,6 @@
                         <img src="/content/img/default-avatar.jpg" id="output" alt="ảnh đại diện" />
                         <div style="text-align:center;">
                             <label class="note_img" for="ufile">Vui lòng chọn ảnh có định dạng <br />.jpg .jpeg .png .gif</label>
-
                         </div>
                         <input name="ImageFile" id="ufile" type="file" style="display:none; cursor:pointer;" onchange="loadFile(event)" />
                     </div>
@@ -246,15 +244,16 @@
             </div>
             <div class="m-dialog_footer">
                 <div class="footer_content">
-                    <button class="m-close" id="btnClose">Hủy</button>
-                    <button class="m-close m-delete m-hide" id="btnDelete">Xóa</button>
                     <button class="m-btn m-add" id="btnSave">
                         <div class="icon-add"></div>
                         <div class="btn-text">Lưu</div>
                     </button>
                 </div>
+                <div class="footer_content_clone">
+                    <button class="btn-no-Icon m-close" id="btnclose">hủy</button>
+                    <button class="btn-no-Icon m-delete m-hide" id="btnDelete">Xóa</button>
+                </div>
             </div>
-
         </div>
     </div>
     <!--==========End dialog add information===========-->

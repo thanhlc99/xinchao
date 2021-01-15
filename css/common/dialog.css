@@ -9,10 +9,10 @@
     .m-content input {
        color: #000000!important;
     }
+
     .m-dialog .m-dialog-content {
         position: absolute;
         width: 800px;
-        height: 690px;
         z-index: 2;
         border-radius: 4px;
         top: calc(50% - 340px);
@@ -102,22 +102,33 @@
     }
 
         .m-dialog_footer .footer_content button {
-            height: 36px;
-            margin-top: 12px;
-            margin-bottom: 12px;
+            margin-top: 10px;
+            margin-bottom: 10px;
             margin-right: 16px;
             width: 100px;
         }
+.footer_content_clone{
+    position:absolute;
+    right: 140px;
+}
 
-.m-close {
+.footer_content_clone .btn-no-Icon {
     border: none;
     cursor: pointer;
     outline: none;
-    transform: translateY(-2px);
-    background-color: #E9EBEE;
     border-radius: 4px;
+    padding-left: 24px;
+    padding-right: 24px;
+    height: 40px;
+    width: 100px;
 }
-    .m-close:hover {
+
+.footer_content_clone .m-close {
+    background-color: #E9EBEE;
+   margin-top:10px;
+   margin-bottom:10px;
+}
+    .footer_content_clone .m-close:hover {
         background-color: #bbbbbb;
     }
     .m-add {
@@ -126,6 +137,7 @@
 .m-delete {
     background-color: #F65454;
     color:#fff;
+    margin-left:16px;
 }
     .m-delete:hover {
         background-color: #F65454;
@@ -158,7 +170,9 @@
     position: absolute;
     top: 0;
 }
-
+#m-dialog {
+    height: auto !important;
+}
 #dialog1 p {
     padding: 0;
     margin: 0;
