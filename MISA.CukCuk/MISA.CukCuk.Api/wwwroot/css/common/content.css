@@ -1,0 +1,147 @@
+﻿.content {
+   
+    position: absolute;
+    top: 61px;
+    left: 221px;
+    width: calc(100% - 221px);
+    height: calc(100vh - 61px);
+    background-color: #ffffff;
+
+}
+
+/*=================page title===============*/
+    .content .page-title {
+        height:40px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+    }
+
+        .content .page-title .title {
+            font-weight: bold;
+            font-size: 20px;
+            color: #000000;
+        }
+
+        .content .page-title .page-feature {
+            position: absolute;
+            right: 16px;
+        }
+
+.icon-add {
+    background-image: url('/content/icon/add.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 16px;
+    height: 16px;
+}
+/*=======================end page title=============*/
+
+/*=======================filter bar=============*/
+.filter-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+    /*left*/
+    .filter-bar .filter-left {
+        padding-left: 16px;
+    }
+    /*end right*/
+
+    /*right*/
+    .filter-bar .filter-right {
+        position: absolute;
+        right: 16px;
+    }
+/*end left*/
+/*=======================end filter bar=============*/
+
+/*======================paging bar=================*/
+.content .paging-bar {
+    height: 56px;
+    display: flex;
+   
+}
+    .content .paging-bar .text_left {
+        position: absolute;
+        left: 16px;
+        line-height: 56px;
+    }
+    .content .paging-bar ._center {
+        margin: 0 auto;
+        display: flex;
+        width: auto;
+        align-items: center;
+        justify-content: center;
+    }
+.icon_firstpage {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    background-size: contain;
+    background-position: center;
+    background-image: url('/content/icon/btn-firstpage.svg');
+}
+.icon_prevpage {
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-image: url('/content/icon/btn-prev-page.svg');
+}
+.number {
+    display: flex;
+}
+.number_page {
+    width: 24px;
+    height: 24px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 12px;
+    margin-left: 5px;
+    border: 1px solid #bbbbbb;
+    cursor:pointer;
+}
+.icon_nextpage {
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
+    border-radius: 4px;
+    background-image: url('/content/icon/btn-next-page.svg');
+    cursor: pointer;
+}
+.icon_lastpage {
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-image: url('/content/icon/btn-lastpage.svg');
+}
+.content .paging-bar .text_right {
+    position: absolute;
+    right: 16px;
+    line-height: 56px;
+}
+.number_page:hover {
+    background-color: #e5e5e5;
+}
+.icon_firstpage:hover {
+    background-color: #e5e5e5;
+}
+.icon_prevpage:hover {
+    background-color: #e5e5e5;
+}
+.icon_nextpage:hover {
+    background-color: #e5e5e5;
+}
+.icon_lastpage:hover {
+    background-color: #e5e5e5;
+}
+.number-click {
+    background-color: #019160 !important;
+}
+/*=====================end paging bar==================*/

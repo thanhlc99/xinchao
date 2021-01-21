@@ -1,0 +1,12 @@
+﻿
+    .icon-search {
+        background-image: url('/content/icon/search.png');
+        background-repeat:no-repeat;
+        background-position:16px center;
+    }
+.logoDate {
+    background-image: url(/content/icon/date-picker.svg);
+    background-repeat: no-repeat;
+    background-position: 206px;
+    background-size: 16px;
+}

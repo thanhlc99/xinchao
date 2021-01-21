@@ -1,0 +1,310 @@
+﻿/*=========img===========*/
+.dialog-img {
+    width: 200px;
+    height: 250px;
+}
+
+    .dialog-img img {
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+        border: 1px solid #E9EBEE;
+    }
+/*===========end img============*/
+
+/* ==================css cho jquery dialog================*/
+.ui-widget {
+    font-family: GoogleSans-Regular;
+    font-size: 13px;
+}
+
+.ui-widget-content {
+    background: #ffffff;
+    /*Change the dialog border color here*/
+    color: #000000;
+}
+
+.ui-dialog {
+    left: 0;
+    outline: 0 none;
+    padding: 0 !important;
+    position: absolute;
+    top: 0;
+}
+
+#m-dialog {
+    height: auto !important;
+}
+
+#dialog1 p {
+    padding: 0;
+    margin: 0;
+}
+
+.ui-dialog .ui-dialog-content {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    overflow: auto;
+    position: relative;
+    padding: 0 !important;
+}
+
+.ui-widget-header {
+    /*Change the Header color here*/
+    background: #fff;
+    border: 0;
+    color: #000000;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    margin: 24px;
+    font-weight: bold;
+    position: relative;
+    font-size: 15px;
+    padding: 0;
+}
+
+.ui-button {
+    position: absolute !important;
+    top: -14px !important;
+    right: -24px !important;
+    border: none;
+    background-color: #fff;
+}
+
+    .ui-button:hover {
+        background-color: #BBBBBB;
+    }
+
+.ui-dialog .ui-dialog-titlebar-close {
+    width: 24px !important;
+    height: 24px !important;
+}
+.custom{
+    width: 234px !important;
+    padding: 9px 16px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #bbbbbb;
+}
+/* ================End css cho jquery dialog================*/
+/*===============header dialog=====================*/
+.m-dialog_footer {
+    display: flex;
+    height: 60px;
+    background-color: #E9EBEE;
+    width: 100%;
+}
+
+    .m-dialog_footer .footer_content {
+        position: absolute;
+        right: 8px;
+    }
+
+        .m-dialog_footer .footer_content button {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-right: 16px;
+            width: 100px;
+        }
+.footer_content_clone {
+    position: absolute;
+    right: 140px;
+}
+
+    .footer_content_clone .btn-no-Icon {
+        border: none;
+        cursor: pointer;
+        outline: none;
+        border-radius: 4px;
+        padding-left: 24px;
+        padding-right: 24px;
+        height: 40px;
+        width: 100px;
+    }
+
+    .footer_content_clone .m-close {
+        background-color: #E9EBEE;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+        .footer_content_clone .m-close:hover {
+            background-color: #bbbbbb;
+        }
+.m-add {
+    display: inline-flex !important;
+}
+
+.m-delete {
+    background-color: #F65454;
+    color: #fff;
+    margin-left: 16px;
+}
+
+    .m-delete:hover {
+        background-color: #F65454;
+    }
+
+.m-hide {
+    display: none;
+}
+
+.dialog-cancel {
+    top: 0px;
+}
+.m-add .icon-add.m-icon-save {
+    background-image: url('/content/icon/save.svg') !important;
+}
+/*==============end header=====================*/
+/*============icon load================*/
+.load {
+    display: none;
+}
+
+.loading {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: .5;
+    z-index: 102;
+}
+
+.load_icoin {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
+    border: 2px solid #00ff90;
+    border-bottom: none;
+    z-index: 102;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/*============end icon load================*/
+/*============notification================*/
+.success {
+    width: 300px;
+    height: 48px;
+    z-index: 10;
+    border-radius: 4px;
+    position: absolute;
+    top: 15%;
+    right: 10px;
+    display: flex;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 6px #000000;
+}
+
+.icon-check {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #01B075;
+    line-height: 30px;
+    display: flex;
+    margin: auto 16px;
+}
+
+    .icon-check img {
+        margin: auto;
+    }
+
+.not-cancel {
+    display: flex;
+    padding-left: 16px;
+    cursor: pointer;
+}
+
+.error {
+    width: 330px;
+    height: 48px;
+    z-index: 10;
+    border-radius: 4px;
+    position: absolute;
+    top: 15%;
+    right: 10px;
+    display: flex;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 6px #000000;
+}
+
+    .error .m-danger {
+        background-color: #F65454;
+    }
+
+.title_notification {
+    line-height: 48px;
+    text-align: center;
+    font-size: 13px;
+    color: #000000;
+}
+
+.pop-up-notification {
+    display: none;
+    height: 167px;
+    width: 350px;
+    z-index: 105;
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    background-color: #fff;
+    border-radius: 4px;
+    color: #000000;
+    border: 1px solid #BBBBBB;
+}
+
+.cancel {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+    .cancel:hover {
+        background-color: #E5E5E5;
+        border-radius: 4px;
+    }
+
+.title_not {
+    margin: 24px;
+    font-weight: bold;
+    font-size: 15px !important;
+}
+
+.content_not {
+    margin-bottom: 24px;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.header_not {
+    height: 60px;
+    width: 100%;
+    background-color: #E5E5E5;
+}
+.m-cancel {
+   
+    position: absolute;
+    bottom: 10px;
+    right: 24px;
+}
+/*============end notification================*/

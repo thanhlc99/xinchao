@@ -1,0 +1,111 @@
+.grid-employee {
+    height: calc(100vh - 229px);
+    position: relative;
+}
+/*css table scroll*/
+.table-scroll {
+    height: calc(100vh - 230px);
+    overflow-y: scroll;
+    overflow-x: scroll;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+    .table-scroll::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        background-color: #e5e5e5;
+        border-radius: 2px;
+    }
+
+|.table-scroll::-webkit-scrollbar-thumb {
+    background-color: #454545;
+    border-radius: 3px;
+}
+
+/*================css content dialog=============*/
+.m-content {
+    width: 700px;
+    padding-bottom: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+    .m-content input {
+        color: #000000 !important;
+    }
+
+.m-dialog .m-dialog-content {
+    position: absolute;
+    width: 800px;
+    z-index: 2;
+    border-radius: 4px;
+    top: calc(50% - 340px);
+    left: calc(50% - 400px);
+    background-color: #ffffff;
+}
+
+.dialog-header .dialog-header-title {
+    font-weight: bold;
+    font-size: 20px;
+    color: #000000;
+    font-family: GoogleSans-Regular;
+    margin-bottom: 24px;
+}
+
+.dialog-header .dialog-header-btn button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: #ffffff;
+    border-radius: 4px;
+    background-image: url('/content/icon/x.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.dialog-header .dialog-header-btn:hover button {
+    background-color: #E9EBEE;
+}
+
+.m-content_top {
+    display: flex;
+}
+
+
+.m-row, .m-row2 {
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
+.m-row3, .m-row1 {
+    margin-top: 16px;
+}
+
+.m-row .m-row2, p span {
+    color: #F65454;
+}
+
+    .m-row .m-row2 .m-row1, p {
+        margin: 0 0 4px 0 !important;
+    }
+
+.m-content_center {
+    display: flex;
+}
+
+.m-row1 input {
+    width: 416px !important;
+}
+
+.m-row3 input {
+    width: 666px !important;
+}
+
+
+/*=============end css content dialog===============*/
