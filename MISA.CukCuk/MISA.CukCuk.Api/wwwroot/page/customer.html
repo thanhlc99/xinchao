@@ -118,7 +118,7 @@
         <div class="grid grid-employee">
 
             <div class="table-scroll">
-                <table border="0" cellspacing="0">
+                <table border="0" cellspacing="0" id="table">
                     <thead>
                         <tr>
                             <th fieldName="CustomerCode"><span>Mã khách hàng</span></th>
@@ -146,7 +146,7 @@
                 <div class="icon_firstpage"></div>
                 <div class="icon_prevpage"></div>
                 <div class="number">
-                    
+
                 </div>
                 <div class="icon_nextpage"></div>
                 <div class="icon_lastpage"></div>
@@ -179,8 +179,8 @@
                         </div>
                         <div class="m-row">
                             <p>Ngày sinh</p>
-                            <input id="datepicker" valueName="DateOfBirth"  format="dd/mm/yyyy" placeholder="_ _/_ _/_ _ _ _" />
-                            
+                            <input id="datepicker" valueName="DateOfBirth" format="dd/mm/yyyy" placeholder="_ _/_ _/_ _ _ _" />
+
                         </div>
                     </div>
                     <div class="conten_top_center">
@@ -190,9 +190,10 @@
                         </div>
                         <div class="m-row custom-select">
                             <p>Nhóm khách hàng</p>
-                            <select id="CustomerGroupName" valueName="CustomerGroupId" class="custom">
-                            </select>
-                            <dropdown id="ddCustomerGroupName" api="/api/v1/customergroups" fieldName="CustomerGroupId" valueName="CustomerGroupName"></dropdown>
+                            <div api="/api/v1/customergroups">
+
+                            </div>
+                            <dropdown api="/api/v1/customergroups" fieldName="CustomerGroupId" valueName="CustomerGroupName"></dropdown>
                         </div>
                         <div class="m-row">
                             <p>Giới tính</p>
@@ -262,7 +263,6 @@
         <div class="load_icoin"></div>
     </div>
     <!--===========end icon loading===========-->
-
     <!--===========notification===========-->
     <div class="m-hide" id="success">
         <div class="success">

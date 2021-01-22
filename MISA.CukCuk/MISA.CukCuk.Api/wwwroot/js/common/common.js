@@ -79,7 +79,7 @@ function viewInforPage(i) {
     var numberText = ``;
     if (i == BaseJs.n) {
         numberText = 'Hiển thị ' + BaseJs.numberInfor + '/' + BaseJs.numberInfor + ' Khách hàng';
-    } else if(i>1){
+    } else if (i > 1) {
         numberText = 'Hiển thị ' + ((i * 10) - 10) + '-' + (i * 10) + '/' + BaseJs.numberInfor + ' Khách hàng';
     }
     else {
@@ -95,11 +95,19 @@ function viewInforPage(i) {
  */
 function loadCombobox(api) {
     if (api) {
-    var combobox = $(`<select id="PositionGroupName" valueName="PositionGroupId" class="custom">
+
+        var fieldName = $("dropdown[api='" + api + "']").attr('fieldName');
+        var fieldValue = $("dropdown[api='" + api + "']").attr('valueName');
+        var combobox = $(`<select valueName="${fieldName}" class="custom">
                         </select>`);
-    
-    var fieldName = $("dropdown[api='" + api + "']").attr('fieldName'); 
-    var fieldValue = $("dropdown[api='" + api + "']").attr('valueName');
+        var filterDepartmentGroup = $(`<select valueName="${fieldName}" class="custom">
+                        <option value="">Tất cả phòng ban</option>
+                        </select>`);
+        var filterPositionGroup = $(`<select valueName="${fieldName}" class="custom">
+                        <option value="">Tất cả vị trí</option>
+                        </select>`);
+        var select = $("div[api='" + api + "']");
+        console.log(this);
         //hiển thị icon load
         $('#load').show();
         //ajax lấy dữ liệu
@@ -107,13 +115,40 @@ function loadCombobox(api) {
             url: api,
             method: "GET"
         }).done(function (res) {
-            if (res) {
-                $.each(res, function (index, value) {
-                    var option = $(`<option value="${value[fieldName]}">${value[fieldValue]}</option>`);
-                    combobox.append(option);
-                })
-            }
-            $("div[api='" + api + "']").append(combobox);
+
+            $.each(select, function (i, obj) {
+
+                if ($(this).attr('filter') == "filterDepartmentGroup") {
+                    if (res) {
+                        $.each(res, function (index, value) {
+                            var option = $(`<option value="${value[fieldName]}">${value[fieldValue]}</option>`);
+                            filterDepartmentGroup.append(option);
+                        })
+                        $(this).append(filterDepartmentGroup);
+                    }
+                }
+                else {
+                    if ($(this).attr('filter') == "filterPositionGroup") {
+                        if (res) {
+                            $.each(res, function (index, value) {
+                                var option = $(`<option value="${value[fieldName]}">${value[fieldValue]}</option>`);
+                                filterPositionGroup.append(option);
+                            })
+                            $(this).append(filterPositionGroup);
+                        }
+                    }
+                    else {
+                        if (res) {
+                            $.each(res, function (index, value) {
+                                var option = $(`<option value="${value[fieldName]}">${value[fieldValue]}</option>`);
+                                combobox.append(option);
+                            })
+                            $(this).append(combobox);
+                        }
+                    }
+                }
+            })
+
             $('#load').hide();
         }).fail(function (res) {
             $('#load').hide();

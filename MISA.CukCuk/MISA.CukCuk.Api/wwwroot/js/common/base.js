@@ -75,6 +75,7 @@ class BaseJs {
         //sự kiện khi ấn nút load
         $('#btnRefresh').click(me.btnRefresh.bind(me));
 
+
         //Hiển thị thông tin chi tiết khi nhấn đúp chuột vô 1 bản ghi
         $('table tbody').on('dblclick', 'tr', me.btnDblClick.bind(me));
 
@@ -143,7 +144,6 @@ class BaseJs {
     btnRefresh() {
         var me = this;
         try {
-            $('table tbody tr').empty();
             me.loadData();
         }
         catch (e) {
@@ -158,11 +158,13 @@ class BaseJs {
     loadData() {
         var me = this;
         try {
+            //xóa sạch dữ liệu lúc trước
+            $('table tbody tr').empty();
+            $('div[api]').empty();
         
-        var fielNames = [];
-        var columns = $('table thead th');//lấy số lượng cột th
-        var getDataUrl = this.domainNV;
-       
+            var columns = $('#table thead th');//lấy số lượng cột th
+            var getDataUrl = this.domainNV;//lấy đường dẫn dữ liệu (api lấy dữ liệu)
+           
 
         //tìm kiếm
         if (this.filter != '') {
@@ -174,59 +176,62 @@ class BaseJs {
             $('table tbody tr').empty();
             getDataUrl = this.numberPage;
         }
-
+        //Hiển thị icon load
         $('#load').show();
-           
+        //ajax lấy dữ liệu
         $.ajax({
             url: getDataUrl,
-            method: "GET"
+            method: "GET",
+            async: true
         }).done(function (res) {
-           
+            
             $.each(res, function (index, obj) {
-                
-                var tr = $(`<tr></tr>`);
-                debugger;
-                if (me.tableName == "Employee") {
-                    $(tr).data('objId', obj.EmployeeId);
-                }
-                else {
-                    $(tr).data('objId', obj.CustomerId);
-                }
-
-                $.each(columns, function (index, th) {
-                    var td = $(`<td></td>`);
-                    var fielNames = $(th).attr('fieldName');//lấy cái để map dữ liệu vào
-                    var value = obj[fielNames];//lấy thông tin dữ liệu map tương ứng
-                    var formatType = $(th).attr('formatType');//lấy dữ liệu để map format date
-                    switch (formatType) {
-                        case "d/m/y":   
-                            value = formatDate(value);
-                            td = $(`<td class="text-center"></td>`);
-                            break;
-                        case "money":
-                            value = formatMoney(value);
-                            td = $(`<td class="text-right"></td>`);
-                            break;
-                        case "address":
-                            td = $(`<td class="address" title="${value}"></td>`);
-                            break;
-                        default:
-                            break;
+                if (res) {
+                    var tr = $(`<tr></tr>`);
+                    if (me.tableName == "Employee") {
+                        $(tr).data('objId', obj.EmployeeId);
                     }
-                    td.append(value);
-                    tr.append(td);
+                    else {
+                        $(tr).data('objId', obj.CustomerId);
+                    }
 
-                })
+                    $.each(columns, function (index, th) {
+                        var td = $(`<td></td>`);
+                        var fielNames = $(th).attr('fieldName');//lấy cái để map dữ liệu vào
+                        var value = obj[fielNames];//lấy thông tin dữ liệu map tương ứng
+                        var formatType = $(th).attr('formatType');//lấy dữ liệu để map format date
+                        switch (formatType) {
+                            case "d/m/y":
+                                value = formatDate(value);
+                                td = $(`<td class="text-center"></td>`);
+                                break;
+                            case "money":
+                                value = formatMoney(value);
+                                td = $(`<td class="text-right"></td>`);
+                                break;
+                            case "address":
+                                td = $(`<td class="address" title="${value}"></td>`);
+                                break;
+                            default:
+                                break;
+                        }
+                        td.append(value);
+                        tr.append(td);
+
+                    })
+                }
                 $('table tbody').append(tr);
-                
+                //ẩn icoin load
                 $('#load').hide();
             })
             
         }).fail(function (res) {
+            //ẩn icoin load
             $('#load').hide();
         })
             this.filter = '';
             this.numberPage = '';
+            //thực hiện load dữ liệu select box
             loadCombobox(this.departmentGroup);
             loadCombobox(this.positionGroup);
         }
@@ -258,6 +263,11 @@ class BaseJs {
     * Created by mvthanh (26/12/2020)
     * */
     btnAddOnClick() {
+
+        $('#DateOfBirth').datepicker();
+        $('#JoinDate').datepicker();
+        $('#LevelDate').datepicker();
+
         var me = this;
         try {
             me.formMethod = "Add";
@@ -268,7 +278,7 @@ class BaseJs {
             //load dữ liệu select box
             var select = $('select#CustomerGroupName');
             select.empty();
-            debugger;
+            
             $('#load').show();
             $.ajax({
                 url: "/api/v1/customergroups",
@@ -303,7 +313,7 @@ class BaseJs {
             $.each(inputValues, function (index, input) {
                 $(input).trigger('blur');
             })
-
+            debugger;
             var notValue = $('input[validate="false"]');
             if (notValue && notValue.length > 0) {
                 notValue[0].focus();
@@ -371,7 +381,7 @@ class BaseJs {
     btnDblClick(e) {
         var me = this;
         try {
-            $("#datepicker").datepicker();
+           
             //bôi màu vào dòng ấn
             $(e.currentTarget).addClass("row-click");
             //hiển thị nút xóa
@@ -390,34 +400,55 @@ class BaseJs {
 
                 //hiển thị dữ liệu lên form chi tiết
                 var inputs = $('input[valueName],select[valueName]');//select tất cả các thẻ input
-                var entity = {};
+                var radioGender = $("[name='radio']");
+               
                 $.each(inputs, function (index, value) {
                     var propertieName = $(this).attr('valueName');
+                    var datetimes = $(this).attr('format');//;lấy các thẻ cần format date
+                    var money = $(this).attr('formatMoney');//lấy các thẻ cần format money
+                    var combobox = $(this).attr('name');//lấy các thẻ cần hiển thị combobox
+                    debugger;
+                    
                     var value = res[propertieName];
+                    //hiển thị dữ liệu lên datetime
+                    if (datetimes) {
+                        value = formatDate(res[propertieName]);
+                    }
+                    //hiển thị dữ liệu money
+                    if (money) {
+                        value = formatMoney(res[propertieName]);
+                    }
 
-                    if (propertieName == "DateOfBirth") {
-                        value = formatDate(res[propertieName]);//hiển thị dữ liệu lên text datetime
+                    //if (propertieName == "DateOfBirth" ) {
+                    //    value = formatDate(res[propertieName]);//hiển thị dữ liệu lên text datetime
+                    //}
+
+                    //hiển thị dữ liệu lên combobox
+                    if (combobox == "combobox") {
+                        value = res[propertieName];
                     }
 
                     //hiển thị dữ liệu giới tính
-                    if (propertieName == "Gender") {
-                        if (res[propertieName] == "1") {
-                            $('input[title="nữ"]').prop('checked', false);
-                            $('input[title="nam"]').prop('checked', true);
+                    if (radioGender.length > 0) {
+                        if (propertieName == "Gender") {
+                            if (res[propertieName] == "1") {
+                                $('input[title="nữ"]').prop('checked', false);
+                                $('input[title="nam"]').prop('checked', true);
+                            }
+                            else if (res[propertieName] == "0") {
+                                $('input[title="nam"]').prop('checked', false);
+                                $('input[title="nữ"]').prop('checked', true);
 
-                        }
-                        else if (res[propertieName] == "0") {
-                            $('input[title="nam"]').prop('checked', false);
-                            $('input[title="nữ"]').prop('checked', true);
-
-                        }
-                        else if (res[propertieName] != "0" && res[propertieName] != "1") {
-                            $('input[title="nam"]').prop('checked', false);
-                            $('input[title="nữ"]').prop('checked', false);
-                            $('input[title="khác"]').prop('checked', true);
-
+                            }
+                            else if (res[propertieName] != "0" && res[propertieName] != "1") {
+                                $('input[title="nam"]').prop('checked', false);
+                                $('input[title="nữ"]').prop('checked', false);
+                                $('input[title="khác"]').prop('checked', true);
+                            }
                         }
                     }
+                   
+                    
                     $(this).val(value);
                 })
                 $('input[title="nam"]').val("1");

@@ -61,7 +61,9 @@ namespace MISA.Infrastructure.Repository
             dbConnection.Open();
             using (var transaction = dbConnection.BeginTransaction())
             {
-                res = dbConnection.Execute($"delete from {tableName} where {tableName}Id = '{entityId.ToString()}'", commandType: CommandType.Text);
+                var param = new DynamicParameters();
+                param.Add("@EmployeeId", dbType: DbType.String, value: entityId.ToString(), direction: ParameterDirection.Input);
+                res = dbConnection.Execute($"Proc_Delete{tableName}ById", param,commandType: CommandType.StoredProcedure);
                 transaction.Commit();
             }
             return res;
@@ -78,7 +80,9 @@ namespace MISA.Infrastructure.Repository
         public TEntity GetEntityById(Guid entityId)
         {
             //khởi tạo commandText
-            var entitys = dbConnection.Query<TEntity>($"select * from {tableName} where {tableName}Id = '{entityId.ToString()}'", commandType: CommandType.Text).FirstOrDefault();
+            var param = new DynamicParameters();
+            param.Add("@EmployeeId", dbType: DbType.String, value: entityId.ToString(), direction: ParameterDirection.Input);
+            var entitys = dbConnection.Query<TEntity>($"Proc_Get{tableName}ById",param, commandType: CommandType.StoredProcedure).FirstOrDefault();
             //trả về dữ liệu
             return entitys;
         }
