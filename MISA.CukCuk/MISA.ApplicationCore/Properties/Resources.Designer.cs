@@ -79,6 +79,15 @@ namespace MISA.ApplicationCore.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Có lỗi xảy ra vui lòng liên hệ MISA!.
+        /// </summary>
+        public static string MISA_Error {
+            get {
+                return ResourceManager.GetString("MISA_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thêm thành công!.
         /// </summary>
         public static string Msg_Add_Success {
@@ -97,7 +106,7 @@ namespace MISA.ApplicationCore.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thông tin {0} đã có trên hệ thống!.
+        ///   Looks up a localized string similar to  {0} đã có trên hệ thống!.
         /// </summary>
         public static string Msg_Duplicate {
             get {

@@ -60,18 +60,34 @@ class Employee extends BaseJs {
         this.numberPage = "";
     }
 
-    setDepartmentGroup() {
-        this.departmentGroup = "/api/v1/DepartmentGroups";
-    }
-
-    setPositionGroup() {
-        this.positionGroup = "/api/v1/PositionGroups";
-    }
-
     setTableName() {
         this.tableName = "Employee";
     }
 
+    loadData() {
+        super.loadData();
+        //mở datetimepicker
+        $('#DateOfBirth').datepicker();
+        $('#JoinDate').datepicker();
+        $('#LevelDate').datepicker();
+         //thực hiện load dữ liệu select box
+        loadCombobox("/api/v1/DepartmentGroups");
+        loadCombobox("/api/v1/PositionGroups");
+    }
+    
+    btnAddOnClick() {
+        super.btnAddOnClick();
+        //lấy ra mã nhân viên đã tăng lên 1 đơn vị
+        $.ajax({
+            url: "/api/v1/employees/maxs",
+            method: "GET"
+        }).done(function (res) {
+            //hiển thị ra màn hình
+            $('#txtEmployeeCode').val(res);
+        }).fail(function (res) {
+            console.log(res);
+        })
+    }
     /**======================================
    * Hàm chức năng phân trang
    * Created by mvthanh (19/01/2021)

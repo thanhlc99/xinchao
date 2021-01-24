@@ -21,11 +21,13 @@ namespace MISA.ApplicationCore.Interfaces
         /// </summary>
         /// <param name="page">số trang</param>
         /// <returns>Danh sách 10 phần tử</returns>
+        /// createdBy:MVThanh (15/01/2021)
         IEnumerable<Customer> GetCustomersByPage(int page);
         /// <summary>
         /// lấy tổng số bản ghi trong database
         /// </summary>
-        /// <returns></returns>
+        /// <returns>tổng số lượng bản ghi</returns>
+        /// createdBy:MVThanh (15/01/2021)
         int GetCustomerCount();
     }
 }

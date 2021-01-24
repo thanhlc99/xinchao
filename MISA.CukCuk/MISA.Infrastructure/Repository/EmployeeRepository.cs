@@ -45,11 +45,12 @@ namespace MISA.Infrastructure.Repository
         {
             //build tham số đầu vào cho store
             var input = specs != null ? specs : string.Empty;
-            //if (string.IsNullOrEmpty(specs))
-            //{
-            //    var entity = dbConnection.Query<Employee>("Proc_GetEmployees", commandType: CommandType.StoredProcedure).ToList();
-            //    return entity;
-            //}
+            //kiểm tra dữ liệu đầu vào xem nếu là null hay emtity thì trả về toàn bộ dữ liệu
+            if (string.IsNullOrEmpty(specs) && departmentId==null||departmentId == Guid.Empty && positionId==null||positionId==Guid.Empty)
+            {
+                var entity = dbConnection.Query<Employee>("Proc_GetEmployees", commandType: CommandType.StoredProcedure).ToList();
+                return entity;
+            }
             var parameters = new DynamicParameters();
             parameters.Add("@EmployeeCode", input, DbType.String);
             parameters.Add("@FullName", input, DbType.String);

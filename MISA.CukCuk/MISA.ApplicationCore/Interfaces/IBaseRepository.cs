@@ -38,7 +38,7 @@ namespace MISA.ApplicationCore.Interfaces
         /// CreatedBy: MVThanh (30/12/2021)
         int Delete(Guid entityId);
         /// <summary>
-        /// Lấy ra bản ghi
+        /// Lấy ra bản ghi (dùng để check dữ liệu xem có trùng không)
         /// </summary>
         /// <returns>Danh sách</returns>
         /// CreatedBy: MVThanh (30/12/2021)

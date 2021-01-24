@@ -36,20 +36,14 @@ namespace MISA.Infrastructure.Repository
         public int Add(TEntity entity)
         {
             var res = 0;
+            //mở kết nối
             dbConnection.Open();
             using (var transaction = dbConnection.BeginTransaction())
             {
-                try
-                {
                     var parameters = MappingDbType(entity);
                     //thi thi câu lệnh
                     res = dbConnection.Execute($"Proc_Insert{tableName}", parameters, commandType: CommandType.StoredProcedure);
                     transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                }
             }
             //trả về kết quả (số bản ghi thêm mới được)
             return res;
@@ -58,21 +52,17 @@ namespace MISA.Infrastructure.Repository
         public int Delete(Guid entityId)
         {
             var res = 0;
+            //mở kết nối
             dbConnection.Open();
             using (var transaction = dbConnection.BeginTransaction())
             {
-                try
-                {
-                    var param = new DynamicParameters();
+                 var param = new DynamicParameters();
                 param.Add($"@{tableName}Id", dbType: DbType.String, value: entityId.ToString(), direction: ParameterDirection.Input);
-                res = dbConnection.Execute($"Proc_Delete{tableName}ById", param,commandType: CommandType.StoredProcedure);
+                    //thi thi câu lệnh
+                    res = dbConnection.Execute($"Proc_Delete{tableName}ById", param,commandType: CommandType.StoredProcedure);
                 transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                }
             }
+            //trả về kết quả(số bản ghi bị ảnh hưởng)
             return res;
         }
 
@@ -97,21 +87,15 @@ namespace MISA.Infrastructure.Repository
         public int Update(TEntity entity)
         {
             var res = 0;
+            //mở kết nối
             dbConnection.Open();
             using (var transaction = dbConnection.BeginTransaction())
             {
-                try
-                {
                     var parameters = MappingDbType(entity);
                     //khởi tạo commandText
                     res = dbConnection.Execute($"Proc_Update{tableName}", parameters, commandType: CommandType.StoredProcedure);
                     //trả về dữ liệu
                     transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                }
             }
             return res;
         }
@@ -127,8 +111,11 @@ namespace MISA.Infrastructure.Repository
             var parameters = new DynamicParameters();
             foreach (var property in properties)
             {
+                //lấy ra key (tên)
                 var propertyName = property.Name;
+                //lấy ra value (giá trị)
                 var propertyValue = property.GetValue(entity);
+                //lấy ra kiểu dữ liệu
                 var propertyType = property.PropertyType;
 
                 if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
@@ -142,18 +129,21 @@ namespace MISA.Infrastructure.Repository
             }
             return parameters;
         }
-
+   
         public TEntity GetEntityByProperty(TEntity entity, PropertyInfo property)
         {
+            //lấy tên
             var propertyName = property.Name;
+            //lấy giá trị
             var propertyValue = property.GetValue(entity);
             var keyValue = entity.GetType().GetProperty($"{tableName}Id").GetValue(entity);
             var query = string.Empty;
+            //nếu là thêm mới
             if (entity.EntityState == EntityState.AddNew)
             {
                 query = $"select * from {tableName} where {propertyName} = '{propertyValue}'";
             }
-            else if (entity.EntityState == EntityState.Update)
+            else if (entity.EntityState == EntityState.Update)//nếu là cập nhật (chỉnh sửa)
             {
                 query = $"select * from {tableName} where {propertyName} = '{propertyValue}' and {tableName}Id <> '{keyValue}'";
             }
@@ -165,6 +155,7 @@ namespace MISA.Infrastructure.Repository
             return entityReturn;
         }
 
+        //đóng kết nối
         public void Dispose()
         {
             if (dbConnection.State == ConnectionState.Open)

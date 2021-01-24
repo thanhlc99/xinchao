@@ -4,7 +4,7 @@
  * */
 class BaseJs {
     constructor() {
-        
+
         /**
          * api load dữ liệu trang
          * */
@@ -17,34 +17,20 @@ class BaseJs {
          * api load dữ liệu số trang
          * */
         this.numberPage = '';
-        /**
-         * api load dữ liệu select (employee (departmentGroup))
-         * */
-        this.departmentGroup = '';
-        /**
-         * api load dữ liệu select (employee (positionGroup))
-         * */
-        this.positionGroup = '';
+
         /**
          * load tên trang truy cập
          * */
         this.tableName = "";
-        /**
-         * api load dữ liệu select (customer(customergroup))
-         * */
-        this.customerGroup = '';
-   
+
+
         /*====================*/
         this.setDomainNV();
         this.setFilter();
-        this.setDepartmentGroup();
-        this.setPositionGroup();
         this.setTableName();
         this.setNumberPage();
-        this.setCustomerGroup();
         //thực hiện việc load dữ liệu ra
         this.loadData();
-        
         this.initEvents();
     }
 
@@ -63,10 +49,10 @@ class BaseJs {
     setFilter() {
 
     }
-/**======================================
-* Hàm xét api lấy tổng số bản ghi trong csdl
-* Created by mvthanh (22/01/2021)
-**/
+    /**======================================
+    * Hàm xét api lấy tổng số bản ghi trong csdl
+    * Created by mvthanh (22/01/2021)
+    **/
     setPageCount() {
 
     }
@@ -77,31 +63,12 @@ class BaseJs {
     setNumberPage() {
 
     }
+
+
     /**
-     *Hàm xét đường dẫn combobox DepartmentGroup
+    *Hàm xét tên để lấy obj.entityId
     * Created by mvthanh (21/01/2021)
-     * */
-    setDepartmentGroup() {
-
-    }
-    /**
-     *Hàm xét đường dẫn combobox PositionGroup
-    * Created by mvthanh (21/01/2021)
-     * */
-    setPositionGroup() {
-
-    }
-    /**
-     * hàm load dữ liệu select (customer(customergroup))
-     * CreatedBy mvthanh(22/01/2021)
-     * */
-    setCustomerGroup() {
-
-    }
-/**
-*Hàm xét tên để lấy obj.entityId
-* Created by mvthanh (21/01/2021)
-* */
+    * */
     setTableName() {
 
     }
@@ -153,7 +120,16 @@ class BaseJs {
         });
 
         //$('input[required]').mouseover(function () {
-        //    $(this).
+        //    var x = $(this).attr('class');
+        //    if (x) {
+        //        var msg = `<div class="message">
+        //                    Trường này không được để trống!
+        //                </div>`;
+        //        $('#message').append(msg);
+        //    }
+        //});
+        //$('input[required]').mouseout(function () {
+        //    $('#message').empty();
         //});
 
         //validate dữ liệu đầu vào input email
@@ -169,6 +145,7 @@ class BaseJs {
                 $(this).removeClass('border-red');
             }
         });
+
         //#endregion
 
         //sự kiến ấn nút lưu
@@ -196,97 +173,85 @@ class BaseJs {
     loadData() {
         var me = this;
         try {
-          
-            
+
             //xóa sạch dữ liệu lúc trước
             $('table tbody tr').empty();
             $('div[api]').empty();
 
-            $('#DateOfBirth').datepicker();
-            $('#JoinDate').datepicker();
-            $('#LevelDate').datepicker();
-
             var columns = $('#table thead th');//lấy số lượng cột th
             var getDataUrl = this.domainNV;//lấy đường dẫn dữ liệu (api lấy dữ liệu)
-           
 
-        //tìm kiếm
-        if (this.filter != '') {
-            $('table tbody tr').empty();
-            getDataUrl = this.filter;
-        }
-        //phân trang
-        if (this.numberPage != '') {
-            $('table tbody tr').empty();
-            getDataUrl = this.numberPage;
-        }
-        //Hiển thị icon load
-        $('#load').show();
-        //ajax lấy dữ liệu
-        $.ajax({
-            url: getDataUrl,
-            method: "GET",
-            async: true
-        }).done(function (res) {
 
-            $.each(res, function (index, obj) {
-                if (res) {
-                    var tr = $(`<tr></tr>`);
-                    debugger;
-                    if (me.tableName == "Employee") {
-                        $(tr).data('objId', obj.EmployeeId);
-                    }
-                    else {
-                            $(tr).data('objId', obj.CustomerId);
-                    }
-                    
-                    $.each(columns, function (index, th) {
-                        var td = $(`<td></td>`);
-                        var fielNames = $(th).attr('fieldName');//lấy cái để map dữ liệu vào
-                        var value = obj[fielNames];//lấy thông tin dữ liệu map tương ứng
-                        var formatType = $(th).attr('formatType');//lấy dữ liệu để map format date
-                        switch (formatType) {
-                            case "d/m/y":
-                                value = formatDate(value);
-                                td = $(`<td class="text-center"></td>`);
-                                break;
-                            case "money":
-                                value = formatMoney(value);
-                                td = $(`<td class="text-right"></td>`);
-                                break;
-                            case "address":
-                                td = $(`<td class="address" title="${value}"></td>`);
-                                break;
-                            default:
-                                break;
+            //tìm kiếm
+            if (this.filter != '') {
+                $('table tbody tr').empty();
+                getDataUrl = this.filter;
+            }
+            //phân trang
+            if (this.numberPage != '') {
+                $('table tbody tr').empty();
+                getDataUrl = this.numberPage;
+            }
+            //Hiển thị icon load
+            $('#load').show();
+            //ajax lấy dữ liệu
+            $.ajax({
+                url: getDataUrl,
+                method: "GET",
+                async: true
+            }).done(function (res) {
+
+                $.each(res, function (index, obj) {
+                    if (res) {
+                        var tr = $(`<tr></tr>`);
+                        if (me.tableName == "Employee") {
+                            $(tr).data('objId', obj.EmployeeId);
                         }
-                        td.append(value);
-                        tr.append(td);
+                        else {
+                            $(tr).data('objId', obj.CustomerId);
+                        }
+                        $.each(columns, function (index, th) {
+                            var td = $(`<td></td>`);
+                            var fielNames = $(th).attr('fieldName');//lấy cái để map dữ liệu vào
+                            var value = obj[fielNames];//lấy thông tin dữ liệu map tương ứng
+                            var formatType = $(th).attr('formatType');//lấy dữ liệu để map format date
+                            switch (formatType) {
+                                case "d/m/y":
+                                    value = formatDate(value);
+                                    td = $(`<td class="text-center"></td>`);
+                                    break;
+                                case "money":
+                                    value = formatMoney(value);
+                                    td = $(`<td class="text-right"></td>`);
+                                    break;
+                                case "address":
+                                    td = $(`<td class="address" title="${value}"></td>`);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            td.append(value);
+                            tr.append(td);
+                        })
+                    }
+                    $('table tbody').append(tr);
+                    //ẩn icoin load
+                    $('#load').hide();
+                })
 
-                    })
-                }
-                $('table tbody').append(tr);
-               
+            }).fail(function (res) {
                 //ẩn icoin load
                 $('#load').hide();
             })
-            
-        }).fail(function (res) {
-            //ẩn icoin load
-            $('#load').hide();
-        })
+            //làm rỗng đường dẫn lấy dữ liệu phân trang và tìm kiếm
             this.filter = '';
             this.numberPage = '';
-            //thực hiện load dữ liệu select box
-            loadCombobox(this.departmentGroup);
-            loadCombobox(this.positionGroup);
-            loadCombobox(this.customerGroup);
         }
         catch (e) {
             console.log(e);
         }
     }
-   
+
 
 
     /**======================================
@@ -301,7 +266,7 @@ class BaseJs {
             dialogDefault.dialog('open');
             $('input:not(input[type="radio"])').val(null);
             $('#btnDelete').addClass("m-hide");
-           
+
         }
         catch (e) {
             console.log(e);
@@ -331,7 +296,7 @@ class BaseJs {
             var objEntity = {};
             var inputs = $('input[valueName],select[valueName]');//select tất cả các thẻ input
             $.each(inputs, function (index, value) {
-                
+
                 var propertieName = $(this).attr('valueName');
                 var valueEntity = $(this).val();
                 //chuyển đổi cho đúng kiểu dữ liệu trước khi gửi đi
@@ -354,7 +319,7 @@ class BaseJs {
                     }
                 }
             })
-
+            debugger;
             var method = "POST";
             var url = me.domainNV;
             if (me.formMethod == "Edit") {
@@ -377,12 +342,12 @@ class BaseJs {
             }).done(function (res) {
                 //console.log(res[Object.keys(res)[1]]);
                 if (res) {
-                            //đưa ra thông báo thành công
-                            toast({
-                                message: res[Object.keys(res)[1]],
-                                type: 'success',
-                                duration: 3000
-                            })
+                    //đưa ra thông báo thành công
+                    toast({
+                        message: res[Object.keys(res)[1]],
+                        type: 'success',
+                        duration: 3000
+                    })
                     //đóng dialog
                     dialogDefault.dialog('close');
                     //load lại dữ liệu
@@ -390,13 +355,23 @@ class BaseJs {
                 }
             }).fail(function (res) {
                 console.log(res);
-                //đưa ra thông báo lỗi
-                //console.log(res.responseJSON.Data[0]);
-                toast({
-                    message: res.responseJSON.Data[0],
-                    type: 'warning',
-                    duration: 3000
-                })
+                //thông báo lỗi nếu ở phía server
+                if (res.responseJSON.MISACode == 500) {
+                    toast({
+                        message: res.responseJSON.Messenger,
+                        type: 'error',
+                        duration: 3000
+                    });
+                }
+                else {
+                    //đưa ra thông báo lỗi trùng dữ liệu, quá kích thước cho phép
+                    //console.log(res.responseJSON.Data[0]);
+                    toast({
+                        message: res.responseJSON.Data[0],
+                        type: 'warning',
+                        duration: 3000
+                    });
+                }
             })
         }
         catch (e) {
@@ -411,13 +386,13 @@ class BaseJs {
     btnDblClick(e) {
         var me = this;
         try {
-           
+
             //bôi màu vào dòng ấn
             $(e.currentTarget).addClass("row-click");
             //hiển thị nút xóa
             $('#btnDelete').removeClass("m-hide");
             //load dữ liệu form
-            
+
             me.formMethod = "Edit";
             //lấy khóa chính của bản ghi
             var objId = $(e.currentTarget).data('objId');
@@ -431,7 +406,7 @@ class BaseJs {
                 //hiển thị dữ liệu lên form chi tiết
                 var inputs = $('input[valueName],select[valueName]');//select tất cả các thẻ input
                 var radioGender = $("[name='radio']");
-               
+
                 $.each(inputs, function (index, value) {
                     var propertieName = $(this).attr('valueName');
                     var datetimes = $(this).attr('format');//;lấy các thẻ cần format date
@@ -476,8 +451,8 @@ class BaseJs {
                             }
                         }
                     }
-                   
-                    
+
+
                     $(this).val(value);
                 })
                 $('input[title="nam"]').val("1");
@@ -517,15 +492,23 @@ class BaseJs {
                 <div class="content_not">Bạn có chắc chắn muốn xóa!</div>
             </div>
             <div class="header_not">
-                <button class="pop-up-delete btn-pop" id="btnPopDelete">Xóa</button>
-                <button class="pop-up-cancel btn-pop" id="btnPopCancel">Hủy</button>
+                <button class="pop-up-delete btn-pop" id="btnPopDelete">
+                  <div>Xóa</div>
+                </button>
+                <button class="pop-up-cancel btn-pop" id="btnPopCancel">
+                    <div>Hủy</div>
+                </button>
             </div>`;
             $('#pop-up-notification').append(htmlPop);
             //kích nút hủy
             $('#btnPopCancel').click(function () {
                 dialogPopUp.dialog('close');
                 $('#pop-up-notification').empty();
-            })
+            });
+
+            $('button[title="Close"]').click(function () {
+                $('#pop-up-notification').empty();
+            });
             //kích nút xóa
             $('#btnPopDelete').click(function () {
                 ////thực hiện xóa
@@ -550,8 +533,16 @@ class BaseJs {
                     me.loadData();
                 }).fail(function (res) {
                     console.log(res);
+                    //thông báo lỗi nếu ở phía server
+                    if (res.responseJSON.MISACode == 500) {
+                        toast({
+                            message: res.responseJSON.Messenger,
+                            type: 'error',
+                            duration: 3000
+                        })
+                    }
                 })
-            })
+            });
         }
         catch (e) {
             console.log(e);

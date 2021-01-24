@@ -57,13 +57,18 @@ class Customer extends BaseJs {
         this.numberPage = "";
     }
 
-    setCustomerGroup() {
-        this.customerGroup = "/api/v1/customergroups";
-    }
-
     setTableName() {
         this.tableName = "Customer";
     }
+
+    loadData() {
+        super.loadData();
+        //mở datetimepicker
+        $('#DateOfBirth').datepicker();
+         //thực hiện load dữ liệu select box
+        loadCombobox("/api/v1/customergroups");
+    }
+
     /**======================================
  * Hàm chức năng phân trang
  * Created by mvthanh (19/01/2021)

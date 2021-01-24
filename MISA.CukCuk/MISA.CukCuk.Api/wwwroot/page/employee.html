@@ -101,7 +101,7 @@
                 <div class="btn-text">Danh sách nhân viên</div>
             </div>
             <div class="page-feature">
-                <button class="m-btn" id="btnAdd">
+                <button class="m-btn" id="btnAdd" accesskey="a"><!--== bật tap thêm mới ấn phím alt + a ==-->
                     <div class="icon-add"></div>
                     <div class="btn-text">Thêm nhân viên</div>
                 </button>
@@ -135,7 +135,7 @@
             </div>
 
             <div class="filter-right">
-                <button class=" m-second-button m-btn-refresh" id="btnRefresh">
+                <button class=" m-second-button m-btn-refresh" accesskey="r" id="btnRefresh"><!--== ấn load lại alt + r ==-->
                 </button>
             </div>
         </div>
@@ -198,11 +198,7 @@
                 <div class="m-content_center">
                     <div class="title_content">A. THÔNG TIN CHUNG</div>
                     <div class="brick"></div>
-                    <div id="message">
-                        <div class="message">
-                            Trường này không được để trống!
-                        </div>
-                    </div>
+                   
                     <div class="m-row">
                         <p>Mã nhân viên(<span>*</span>)</p>
                         <input type="text" id="txtEmployeeCode" tabindex="1" valueName="EmployeeCode" required />
@@ -224,6 +220,7 @@
                         <input type="text" id="txtPlaceOfIssue" tabindex="7" valueName="PlaceOfIssue" />
                     </div>
                     <div class="m-row">
+                       
                         <p>Email(<span>*</span>)</p>
                         <input type="email" id="txtEmail" valueName="Email" tabindex="8" required placeholder="example@domain.com" />
                     </div>
@@ -271,7 +268,7 @@
                         <p>Vị trí</p>
                         <!--<select id="PositionGroupName" valueName="PositionGroupId" class="custom">
                         </select>-->
-                        <div api="/api/v1/PositionGroups" tabindex="10">
+                        <div api="/api/v1/PositionGroups" >
 
                         </div>
                         <dropdown api="/api/v1/PositionGroups" fieldName="PositionGroupId" valueName="PositionGroupName"></dropdown>
@@ -294,7 +291,7 @@
                         <p>Phòng ban</p>
                         <!--<select id="DepartmentGroupName" valueName="DepartmentGroupId" class="custom">
                         </select>-->
-                        <div api="/api/v1/DepartmentGroups" tabindex="11">
+                        <div api="/api/v1/DepartmentGroups">
 
                         </div>
                         <dropdown api="/api/v1/DepartmentGroups" fieldName="DepartmentGroupId" valueName="DepartmentGroupName"></dropdown>
@@ -319,14 +316,18 @@
             </div>
             <div class="m-dialog_footer">
                 <div class="footer_content">
-                    <button class="m-btn m-add" id="btnSave">
+                    <button class="m-btn m-add" id="btnSave" accesskey="l"><!--== ấn button lưu lại alt + l ==-->
                         <div class="icon-add m-icon-save"></div>
                         <div class="btn-text" tabindex="16">Lưu</div>
                     </button>
                 </div>
                 <div class="footer_content_clone">
-                    <button class="btn-no-Icon m-close" tabindex="18" id="btnclose">hủy</button>
-                    <button class="btn-no-Icon m-delete m-hide" id="btnDelete">Xóa</button>
+                    <button class="btn-no-Icon m-close" id="btnclose" accesskey="c"><!--== ấn nút hủy alt + c ==-->
+                        <div  tabindex="17" >hủy</div>
+                    </button>
+                    <button class="btn-no-Icon m-delete m-hide"  id="btnDelete" accesskey="x"><!--== ấn nút xóa alt + d ==-->
+                        <div  tabindex="18">Xóa</div>
+                    </button>
                 </div>
             </div>
         </div>

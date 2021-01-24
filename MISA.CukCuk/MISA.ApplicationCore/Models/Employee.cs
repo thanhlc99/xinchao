@@ -37,7 +37,7 @@ namespace MISA.ApplicationCore.Models
         /// <summary>
         /// ngày tháng năm sinh
         /// </summary>
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         /// <summary>
         /// giới tính
         /// </summary>
@@ -69,11 +69,13 @@ namespace MISA.ApplicationCore.Models
         /// Số chứng minh nhân dân/ thẻ căn cước
         /// </summary>
         [Required]
+        [CheckDuplicate]
+        [DisplayName("Số CMTND/Căn cước")]
         public string IdentityCardNumber { get; set; }
         /// <summary>
         /// Ngày cấp thẻ chứng minh thư nhân dân/căn cước
         /// </summary>
-        public DateTime LevelDate { get; set; }
+        public DateTime? LevelDate { get; set; }
         /// <summary>
         /// Nơi cấp chứng minh thư nhân dân/căn cước
         /// </summary>
@@ -82,11 +84,15 @@ namespace MISA.ApplicationCore.Models
         /// địa chỉ email
         /// </summary>
         [Required]
+        [CheckDuplicate]
+        [DisplayName("Email")]
         public string Email { get; set; }
         /// <summary>
         /// số điện thoại nhân viên
         /// </summary>
         [Required]
+        [CheckDuplicate]
+        [DisplayName("Số điện thoại")]
         public string PhoneNumber { get; set; }
         /// <summary>
         /// Vị trí làm việc trong công ty
@@ -111,15 +117,18 @@ namespace MISA.ApplicationCore.Models
         /// <summary>
         /// Mức lương cơ bản
         /// </summary>
-        public float Salary { get; set; }
+        public float? Salary { get; set; }
         /// <summary>
         /// ngày gia nhập
         /// </summary>
-        public DateTime JoinDate { get; set; }
+        public DateTime? JoinDate { get; set; }
         /// <summary>
         /// tình trạng công việc
         /// </summary>
         public int WorkStatus { get; set; }
+        /// <summary>
+        /// config tình trạng công việc dạng chữ
+        /// </summary>
         public string WorkStatusName
         {
             get

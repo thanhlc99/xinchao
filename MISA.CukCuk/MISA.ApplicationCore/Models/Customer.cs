@@ -81,6 +81,8 @@ namespace MISA.ApplicationCore.Models
         /// <summary>
         /// số điện thoại
         /// </summary>
+        [CheckDuplicate]
+        [Required]
         [DisplayName("số điện thoại")]
         public string PhoneNumber { get; set; }
         /// <summary>

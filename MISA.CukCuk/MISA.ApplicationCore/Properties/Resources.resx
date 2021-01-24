@@ -123,6 +123,9 @@
   <data name="male" xml:space="preserve">
     <value>nam</value>
   </data>
+  <data name="MISA_Error" xml:space="preserve">
+    <value>Có lỗi xảy ra vui lòng liên hệ MISA!</value>
+  </data>
   <data name="Msg_Add_Success" xml:space="preserve">
     <value>Thêm thành công!</value>
   </data>
@@ -130,7 +133,7 @@
     <value>Xóa thành công!</value>
   </data>
   <data name="Msg_Duplicate" xml:space="preserve">
-    <value>Thông tin {0} đã có trên hệ thống!</value>
+    <value> {0} đã có trên hệ thống!</value>
   </data>
   <data name="Msg_Error" xml:space="preserve">
     <value>Có lỗi trong quá trình xử lý!</value>

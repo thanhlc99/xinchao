@@ -24,16 +24,31 @@ namespace MISA.ApplicationCore.Services
         #region method
         public virtual ServiceResult Add(TEntity entity)
         {
+            //Gán trạng thái
             entity.EntityState = Enums.EntityState.AddNew;
             //thực hiện validate
             var isValidate = Validate(entity);
             
             if (isValidate)
             {
-                _serviceResult.Data= _baseRepository.Add(entity);
-                _serviceResult.MISACode = Enums.MISACode.IsValid;
-                _serviceResult.Messenger = Properties.Resources.Msg_Add_Success;
-                return _serviceResult;
+               var a= _baseRepository.Add(entity);
+                //check xem dữ liệu được lưu vào db chưa
+                if (a > 0)
+                {
+                    //thành công
+                    _serviceResult.Data = a;
+                    _serviceResult.MISACode = Enums.MISACode.IsValid;
+                    _serviceResult.Messenger = Properties.Resources.Msg_Add_Success;
+                    return _serviceResult;
+                }
+                else
+                {
+                    //thất bại
+                    _serviceResult.Data = a;
+                    _serviceResult.Messenger = Properties.Resources.MISA_Error;
+                    _serviceResult.MISACode = Enums.MISACode.Exception;
+                    return _serviceResult;
+                }
             }
             else
             {
@@ -45,17 +60,20 @@ namespace MISA.ApplicationCore.Services
         {
             
             var res = _baseRepository.Delete(entityId);
+            //check xem dữ liệu được xóa trong db chưa
             if (res > 0)
             {
+            //thành công
                 _serviceResult.Data = res;
                 _serviceResult.Messenger = Properties.Resources.Msg_Delete_Success;
                 _serviceResult.MISACode = Enums.MISACode.Success;
             }
             else
             {
+                //thất bại
                 _serviceResult.Data = res;
-                _serviceResult.Messenger = Properties.Resources.Msg_Error;
-                _serviceResult.MISACode = Enums.MISACode.NotValid;
+                _serviceResult.Messenger = Properties.Resources.MISA_Error;
+                _serviceResult.MISACode = Enums.MISACode.Exception;
             }    
             return _serviceResult;
         }
@@ -78,14 +96,26 @@ namespace MISA.ApplicationCore.Services
 
             if (isValidate)
             {
-                _serviceResult.Data = _baseRepository.Update(entity);
-                _serviceResult.MISACode = Enums.MISACode.IsValid;
-                _serviceResult.Messenger = Properties.Resources.Msg_Update_Success;
-                return _serviceResult;
+                  var res = _baseRepository.Update(entity);
+                if (res > 0)
+                {
+                    //thành công
+                    _serviceResult.Data = res;
+                    _serviceResult.MISACode = Enums.MISACode.IsValid;
+                    _serviceResult.Messenger = Properties.Resources.Msg_Update_Success;
+                    return _serviceResult;
+                }
+                else
+                {
+                    //thất bại
+                    _serviceResult.Data = res;
+                    _serviceResult.Messenger = Properties.Resources.MISA_Error;
+                    _serviceResult.MISACode = Enums.MISACode.Exception;
+                    return _serviceResult;
+                }
             }
             else
             {
-
                 return _serviceResult;
             }
         }
@@ -98,11 +128,14 @@ namespace MISA.ApplicationCore.Services
         private bool Validate(TEntity entity)
         {
             var isValidate = true;
+            //mảng chứa các thông báo lỗi
             var misaArrayError = new List<string>();
             //đọc các property
             var properties = entity.GetType().GetProperties();
+
             foreach(var property in properties)
             {
+                //lấy giá trị của property
                 var propertyValue = property.GetValue(entity);
 
                 var displayName = string.Empty;

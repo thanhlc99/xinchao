@@ -6153,9 +6153,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.CukCuk.Api\\MISA.CukCuk.Api.csproj",
-      "projectName": "MISA.CukCuk.Api",
-      "projectPath": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.CukCuk.Api\\MISA.CukCuk.Api.csproj",
+      "projectUniqueName": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.CukCuk.Api\\MISA.CukCuk.Web.csproj",
+      "projectName": "MISA.CukCuk.Web",
+      "projectPath": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.CukCuk.Api\\MISA.CukCuk.Web.csproj",
       "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.CukCuk.Api\\obj\\",
       "projectStyle": "PackageReference",

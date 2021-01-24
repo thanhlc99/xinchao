@@ -173,7 +173,7 @@ function loadCombobox(api) {
     if (api) {
         var fieldName = $("dropdown[api='" + api + "']").attr('fieldName');
         var fieldValue = $("dropdown[api='" + api + "']").attr('valueName');
-        var combobox = $(`<select valueName="${fieldName}" class="custom">
+        var combobox = $(`<select tabindex="10" valueName="${fieldName}" class="custom">
                         </select>`);
         var filterDepartmentGroup = $(`<select filter="departmentId" valueName="${fieldName}" class="custom">
                         <option value="">Tất cả phòng ban</option>

@@ -46,9 +46,9 @@ namespace MISA.CukCuk.Api.Middleware
                     Data = new
                     {
                         debMsg = ex.Message,
-                        cusMsg = "Có lỗi xảy ra vui lòng liên hệ MISA"
+                        cusMsg = ApplicationCore.Properties.Resources.MISA_Error
                     },
-                    Messenger = "Có lỗi xảy ra vui lòng liên hệ MISA",
+                    Messenger = ApplicationCore.Properties.Resources.MISA_Error,
                     MISACode = ApplicationCore.Enums.MISACode.Exception
                 });
             context.Response.ContentType = "application/json";

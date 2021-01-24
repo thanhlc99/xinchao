@@ -80,6 +80,9 @@
     width: 24px !important;
     height: 24px !important;
 }
+select:focus {
+    border-color: #019160;
+}
 .custom {
     width: 234px !important;
     padding: 9px 16px;
