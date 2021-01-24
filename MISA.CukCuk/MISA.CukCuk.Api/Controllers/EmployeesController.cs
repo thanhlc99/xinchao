@@ -51,6 +51,7 @@ namespace MISA.CukCuk.Api.Controllers
         /// lấy ra mã nhân viên lớn nhất và thực hiện tự tăng lên 1 đơn vị
         /// </summary>
         /// <returns>trả về mã nhân viên đã tự tăng lên 1</returns>
+        /// CreatedBy:MVThanh (24/01/2021)
         [HttpGet("maxs")]
         public IActionResult GetEmployeeCodeMax()
         {

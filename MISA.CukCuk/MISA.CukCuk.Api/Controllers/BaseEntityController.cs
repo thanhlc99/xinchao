@@ -48,11 +48,12 @@ namespace MISA.CukCuk.Api.Controllers
             return Ok(entity);
         }
 
-       /// <summary>
-       /// Thêm mới một thông tin
-       /// </summary>
-       /// <param name="entity">object</param>
-       /// <returns>một thông tin nghiệp vụ</returns>
+        /// <summary>
+        /// Thêm mới một thông tin
+        /// </summary>
+        /// <param name="entity">object</param>
+        /// <returns>một thông tin nghiệp vụ</returns>
+        /// CreatedBy: MVThanh(09/01/2021)
         [HttpPost]
         public IActionResult Post(TEntity entity)
         {
@@ -74,6 +75,7 @@ namespace MISA.CukCuk.Api.Controllers
         /// <param name="id">Khóa chính của đối tượng đó</param>
         /// <param name="entity">object (đối tượng)</param>
         /// <returns>một thông tin nghiệp vụ</returns>
+        /// CreatedBy: MVThanh(09/01/2021)
         [HttpPut("{id}")]
         public IActionResult Put([FromRoute] string id,[FromBody] TEntity entity)
         {
@@ -108,6 +110,7 @@ namespace MISA.CukCuk.Api.Controllers
         /// </summary>
         /// <param name="id">Khóa chính của đối tượng đó</param>
         /// <returns>Trạng thái nghiệp vụ</returns>
+        /// CreatedBy: MVThanh(09/01/2021)
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
