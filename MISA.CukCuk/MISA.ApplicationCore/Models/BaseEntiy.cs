@@ -36,6 +36,9 @@ namespace MISA.ApplicationCore.Models
     [AttributeUsage(AttributeTargets.Property)]
     public class DisplayName : Attribute
     {
+        /// <summary>
+        /// Tên tiếng việt muốn hiển thị
+        /// </summary>
         public string Name { get; set; }
         public DisplayName(string name=null)
         {
@@ -48,7 +51,13 @@ namespace MISA.ApplicationCore.Models
     [AttributeUsage(AttributeTargets.Property)]
     public class MaxLength : Attribute
     {
+        /// <summary>
+        /// Kích thước max
+        /// </summary>
         public int Value { get; set; }
+        /// <summary>
+        /// dòng thông báo
+        /// </summary>
         public string ErrorMsg { get; set; }
         public MaxLength(int length,string errorMsg = null){
             this.Value = length;

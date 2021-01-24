@@ -14,6 +14,7 @@
     <link href="/css/common/icon.css" rel="stylesheet" />
     <link href="/css/common/button.css" rel="stylesheet" />
     <link href="/css/common/grid.css" rel="stylesheet" />
+    <link href="/css/common/toast-messager.css" rel="stylesheet" />
     <link href="/css/page/customer.css" rel="stylesheet" />
 </head>
 <body>
@@ -141,7 +142,7 @@
         <!--******End table information****-->
         <!--===========paging bar===========-->
         <div class="paging-bar">
-            <div class="text_left">Hiển thị 1-10/1000 khách hàng</div>
+            <div class="text_left"></div>
             <div class="_center">
                 <div class="icon_firstpage"></div>
                 <div class="icon_prevpage"></div>
@@ -154,153 +155,131 @@
             <div class="text_right">10 khách hàng/trang</div>
         </div>
         <!--==========End paging bar============-->
-    </div>
-    <!--=================end content==========-->
-    <!--=========dialog add information=========-->
-    <div id="m-dialog" class="dialog1" title="THÔNG TIN KHÁCH HÀNG">
-        <div class="m-dialog-content">
-            <div class="m-content">
-                <div class="m-content_top">
-                    <div class="dialog-img">
-                        <img src="/content/img/default-avatar.jpg" id="output" alt="ảnh đại diện" />
-                        <div style="text-align:center;">
-                            <label class="note_img" for="ufile">Vui lòng chọn ảnh có định dạng <br />.jpg .jpeg .png .gif</label>
-                        </div>
-                        <input name="ImageFile" id="ufile" type="file" style="display:none; cursor:pointer;" onchange="loadFile(event)" />
-                    </div>
-                    <div class="conten_top_center">
-                        <div class="m-row">
-                            <p>Mã khách hàng(<span>*</span>)</p>
-                            <input type="text" id="txtCustomerCode" valueName="CustomerCode" required />
-                        </div>
-                        <div class="m-row">
-                            <p>Mã thẻ thành viên</p>
-                            <input type="text" id="txtMemberCardCode" valueName="MemberCardCode" />
-                        </div>
-                        <div class="m-row">
-                            <p>Ngày sinh</p>
-                            <input id="datepicker" valueName="DateOfBirth" format="dd/mm/yyyy" placeholder="_ _/_ _/_ _ _ _" />
-
-                        </div>
-                    </div>
-                    <div class="conten_top_center">
-                        <div class="m-row">
-                            <p>Họ và tên(<span>*</span>)</p>
-                            <input type="text" id="txtFullName" valueName="FullName" required />
-                        </div>
-                        <div class="m-row custom-select">
-                            <p>Nhóm khách hàng</p>
-                            <div api="/api/v1/customergroups">
-
+        <!--=================end content==========-->
+        <!--=========dialog add information=========-->
+        <div id="m-dialog" class="dialog1" title="THÔNG TIN KHÁCH HÀNG">
+            <div class="m-dialog-content">
+                <div class="m-content">
+                    <div class="m-content_top">
+                        <div class="dialog-img">
+                            <img src="/content/img/default-avatar.jpg" id="output" alt="ảnh đại diện" />
+                            <div style="text-align:center;">
+                                <label class="note_img" for="ufile">Vui lòng chọn ảnh có định dạng <br />.jpg .jpeg .png .gif</label>
                             </div>
-                            <dropdown api="/api/v1/customergroups" fieldName="CustomerGroupId" valueName="CustomerGroupName"></dropdown>
+                            <input name="ImageFile" id="ufile" type="file" style="display:none; cursor:pointer;" onchange="loadFile(event)" />
                         </div>
-                        <div class="m-row">
-                            <p>Giới tính</p>
-                            <label class="container rb1">
-                                Nam
-                                <input type="radio" checked="checked" value="1" title="nam" valueName="Gender" name="radio">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container rb2">
-                                Nữ
-                                <input type="radio" name="radio" value="0" title="nữ" valueName="Gender">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container rb2">
-                                Khác
-                                <input type="radio" name="radio" value="2" title="khác" valueName="Gender">
-                                <span class="checkmark"></span>
-                            </label>
+                        <div class="conten_top_center">
+                            <div class="m-row">
+                                <p>Mã khách hàng(<span>*</span>)</p>
+                                <input type="text" id="txtCustomerCode" valueName="CustomerCode" required />
+                            </div>
+                            <div class="m-row">
+                                <p>Mã thẻ thành viên</p>
+                                <input type="text" id="txtMemberCardCode" valueName="MemberCardCode" />
+                            </div>
+
+                            <div class="m-row">
+                                <p>Ngày sinh</p>
+                                <div style="position:relative">
+                                    <div class="box"></div>
+                                    <img src="/content/icon/date-picker.svg" class="logoDate" />
+                                    <input id="DateOfBirth" valueName="DateOfBirth" format="dd/mm/yyyy" placeholder="_ _/_ _/_ _ _ _" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="conten_top_center">
+                            <div class="m-row">
+                                <p>Họ và tên(<span>*</span>)</p>
+                                <input type="text" id="txtFullName" valueName="FullName" required />
+                            </div>
+                            <div class="m-row custom-select">
+                                <p>Nhóm khách hàng</p>
+                                <div api="/api/v1/customergroups">
+
+                                </div>
+                                <dropdown api="/api/v1/customergroups" fieldName="CustomerGroupId" valueName="CustomerGroupName"></dropdown>
+                            </div>
+                            <div class="m-row">
+                                <p>Giới tính</p>
+                                <label class="container rb1">
+                                    Nam
+                                    <input type="radio" checked="checked" value="1" title="nam" valueName="Gender" name="radio">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container rb2">
+                                    Nữ
+                                    <input type="radio" name="radio" value="0" title="nữ" valueName="Gender">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container rb2">
+                                    Khác
+                                    <input type="radio" name="radio" value="2" title="khác" valueName="Gender">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-content_center">
+                        <div class="m-row1">
+                            <p>Email</p>
+                            <input type="email" id="txtEmail" valueName="Email" placeholder="example@domain.com" />
+                        </div>
+                        <div class="m-row2">
+                            <p>Số điện thoại(<span>*</span>)</p>
+                            <input type="text" id="txtPhoneNumber" valueName="PhoneNumber" required />
+                        </div>
+                    </div>
+                    <div class="m-content_center">
+                        <div class="m-row1">
+                            <p>Tên công ty</p>
+                            <input type="text" id="txtCompany" valueName="CompanyName" />
+                        </div>
+                        <div class="m-row2">
+                            <p>Mã số thuế</p>
+                            <input type="text" placeholder="Mã số thuế của công ty" valueName="CompanyTaxCode" id="txtTaxCode" />
+                        </div>
+                    </div>
+                    <div class="m-content_bottom">
+                        <div class="m-row3">
+                            <p>Địa chỉ</p>
+                            <input type="text" valueName="Address" id="txtAddress" />
                         </div>
                     </div>
                 </div>
-                <div class="m-content_center">
-                    <div class="m-row1">
-                        <p>Email</p>
-                        <input type="email" id="txtEmail" valueName="Email" placeholder="example@domain.com" />
+                <div class="m-dialog_footer">
+                    <div class="footer_content">
+                        <button class="m-btn m-add" id="btnSave">
+                            <div class="icon-add m-icon-save"></div>
+                            <div class="btn-text">Lưu</div>
+                        </button>
                     </div>
-                    <div class="m-row2">
-                        <p>Số điện thoại(<span>*</span>)</p>
-                        <input type="text" id="txtPhoneNumber" valueName="PhoneNumber" required />
+                    <div class="footer_content_clone">
+                        <button class="btn-no-Icon m-close" id="btnclose">hủy</button>
+                        <button class="btn-no-Icon m-delete m-hide" id="btnDelete">Xóa</button>
                     </div>
-                </div>
-                <div class="m-content_center">
-                    <div class="m-row1">
-                        <p>Tên công ty</p>
-                        <input type="text" id="txtCompany" valueName="CompanyName" />
-                    </div>
-                    <div class="m-row2">
-                        <p>Mã số thuế</p>
-                        <input type="text" placeholder="Mã số thuế của công ty" valueName="CompanyTaxCode" id="txtTaxCode" />
-                    </div>
-                </div>
-                <div class="m-content_bottom">
-                    <div class="m-row3">
-                        <p>Địa chỉ</p>
-                        <input type="text" valueName="Address" id="txtAddress" />
-                    </div>
-                </div>
-            </div>
-            <div class="m-dialog_footer">
-                <div class="footer_content">
-                    <button class="m-btn m-add" id="btnSave">
-                        <div class="icon-add m-icon-save"></div>
-                        <div class="btn-text">Lưu</div>
-                    </button>
-                </div>
-                <div class="footer_content_clone">
-                    <button class="btn-no-Icon m-close" id="btnclose">hủy</button>
-                    <button class="btn-no-Icon m-delete m-hide" id="btnDelete">Xóa</button>
                 </div>
             </div>
         </div>
-    </div>
-    <!--==========End dialog add information===========-->
-    <!--===========icon loading===========-->
-    <div id="load" class="load">
-        <div class="loading"></div>
-        <div class="load_icoin"></div>
-    </div>
-    <!--===========end icon loading===========-->
-    <!--===========notification===========-->
-    <div class="m-hide" id="success">
-        <div class="success">
-            <div class="icon-check">
-                <img src="/content/icon/check.svg" />
-            </div>
-            <div class="title_notification">Nội dung đã được gửi thành công</div>
-            <div class="not-cancel">
-                <img src="/content/icon/x_blue.svg" />
-            </div>
+        <!--==========End dialog add information===========-->
+        <!--===========icon loading===========-->
+        <div id="load" class="load">
+            <div class="loading"></div>
+            <div class="load_icoin"></div>
         </div>
-    </div>
-    <div class="m-hide" id="error">
-        <div class="error">
-            <div class="icon-check m-danger">
-                <img src="/content/icon/alert-triangle.svg" />
-            </div>
-            <div class="title_notification">có lỗi xảy ra, gửi không thành công</div>
-            <div class="not-cancel">
-                <img src="/content/icon/x_danger.svg" />
-            </div>
-        </div>
-    </div>
+        <!--===========end icon loading===========-->
+        <!--===========notification===========-->
+        <div id="toast">
 
-    <div class="pop-up-notification">
-        <div class="cancel">X</div>
-        <div class="title_not">Pop-up thông báo</div>
-        <div class="content_not">Dữ liệu không hợp lệ. Vui lòng nhập lại!</div>
-        <div class="header_not">
-            <button class="m-btn m-cancel">Đóng</button>
         </div>
-    </div>
-    <!--===========end notification===========-->
+        <div id="pop-up-notification" title="Pop-up thông báo">
+           
+        </div>
+        <!--===========end notification===========-->
 
-    <script src="/lib/jquery-3.5.1.min.js"></script>
-    <script src="/lib/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-    <script src="/js/common/common.js"></script>
-    <script src="/js/common/base.js"></script>
-    <script src="/js/page/customer.js"></script>
+        <script src="/lib/jquery-3.5.1.min.js"></script>
+        <script src="/lib/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+        <script src="/js/common/common.js"></script>
+        <script src="/js/common/base.js"></script>
+        <script src="/js/page/customer.js"></script>
 </body>
 </html>

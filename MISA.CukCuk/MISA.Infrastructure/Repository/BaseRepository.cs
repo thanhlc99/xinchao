@@ -61,15 +61,22 @@ namespace MISA.Infrastructure.Repository
             dbConnection.Open();
             using (var transaction = dbConnection.BeginTransaction())
             {
-                var param = new DynamicParameters();
-                param.Add("@EmployeeId", dbType: DbType.String, value: entityId.ToString(), direction: ParameterDirection.Input);
+                try
+                {
+                    var param = new DynamicParameters();
+                param.Add($"@{tableName}Id", dbType: DbType.String, value: entityId.ToString(), direction: ParameterDirection.Input);
                 res = dbConnection.Execute($"Proc_Delete{tableName}ById", param,commandType: CommandType.StoredProcedure);
                 transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                }
             }
             return res;
         }
 
-        public virtual IEnumerable<TEntity> GetEntities()
+        public  IEnumerable<TEntity> GetEntities()
         {
              //khởi tạo commandText
             var entitys = dbConnection.Query<TEntity>($"Proc_Get{tableName}s", commandType: CommandType.StoredProcedure);
@@ -81,7 +88,7 @@ namespace MISA.Infrastructure.Repository
         {
             //khởi tạo commandText
             var param = new DynamicParameters();
-            param.Add("@EmployeeId", dbType: DbType.String, value: entityId.ToString(), direction: ParameterDirection.Input);
+            param.Add($"@{tableName}Id", dbType: DbType.String, value: entityId.ToString(), direction: ParameterDirection.Input);
             var entitys = dbConnection.Query<TEntity>($"Proc_Get{tableName}ById",param, commandType: CommandType.StoredProcedure).FirstOrDefault();
             //trả về dữ liệu
             return entitys;
@@ -93,11 +100,18 @@ namespace MISA.Infrastructure.Repository
             dbConnection.Open();
             using (var transaction = dbConnection.BeginTransaction())
             {
-                var parameters = MappingDbType(entity);
-                //khởi tạo commandText
-                res = dbConnection.Execute($"Proc_Update{tableName}", parameters, commandType: CommandType.StoredProcedure);
-                //trả về dữ liệu
-                transaction.Commit();
+                try
+                {
+                    var parameters = MappingDbType(entity);
+                    //khởi tạo commandText
+                    res = dbConnection.Execute($"Proc_Update{tableName}", parameters, commandType: CommandType.StoredProcedure);
+                    //trả về dữ liệu
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                }
             }
             return res;
         }

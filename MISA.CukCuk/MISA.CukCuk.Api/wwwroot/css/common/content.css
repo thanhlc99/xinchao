@@ -64,11 +64,14 @@
     display: flex;
    
 }
-    .content .paging-bar .text_left {
-        position: absolute;
-        left: 16px;
-        line-height: 56px;
-    }
+   
+
+.content .paging-bar .text_left {
+    position: absolute;
+    left: 16px;
+    line-height: 56px;
+}
+  
     .content .paging-bar ._center {
         margin: 0 auto;
         display: flex;
@@ -76,16 +79,17 @@
         align-items: center;
         justify-content: center;
     }
-.icon_firstpage {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    border-radius: 4px;
-    background-size: contain;
-    background-position: center;
-    background-image: url('/content/icon/btn-firstpage.svg');
-}
+  
+    .icon_firstpage {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        border-radius: 4px;
+        background-size: contain;
+        background-position: center;
+        background-image: url('/content/icon/btn-firstpage.svg');
+    }
 .icon_prevpage {
     border-radius: 4px;
     width: 24px;

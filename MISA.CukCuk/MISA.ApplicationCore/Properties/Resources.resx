@@ -123,11 +123,29 @@
   <data name="male" xml:space="preserve">
     <value>nam</value>
   </data>
+  <data name="Msg_Add_Success" xml:space="preserve">
+    <value>Thêm thành công!</value>
+  </data>
+  <data name="Msg_Delete_Success" xml:space="preserve">
+    <value>Xóa thành công!</value>
+  </data>
   <data name="Msg_Duplicate" xml:space="preserve">
     <value>Thông tin {0} đã có trên hệ thống!</value>
   </data>
+  <data name="Msg_Error" xml:space="preserve">
+    <value>Có lỗi trong quá trình xử lý!</value>
+  </data>
   <data name="Msg_IsNotValid" xml:space="preserve">
     <value>Dữ liệu không hợp lệ!</value>
+  </data>
+  <data name="Msg_MaxLength" xml:space="preserve">
+    <value> {0} vượt quá {1} ký tự!</value>
+  </data>
+  <data name="Msg_Required" xml:space="preserve">
+    <value>{0} không được phép để trống!</value>
+  </data>
+  <data name="Msg_Update_Success" xml:space="preserve">
+    <value>Cập nhật thành công!</value>
   </data>
   <data name="other" xml:space="preserve">
     <value>khác</value>

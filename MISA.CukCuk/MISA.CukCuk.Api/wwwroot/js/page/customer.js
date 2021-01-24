@@ -26,12 +26,13 @@ class Customer extends BaseJs {
     initEvents() {
         var me = this;
         super.initEvents();
-        //thực hiện chức năng tìm kiếm
-        $('#txtSearch').blur(function () {
-            var value = $('#txtSearch').val();
-            me.filter = "/api/v1/customers/filter?specs=" + value;
-            me.loadData();
-        })
+        /**
+         * Thực hiện chức năng tìm kiếm
+         * CreatedBy MVThanh (23/01/2021)
+         * */
+        $('#txtSearch').blur(me.btnFilter.bind(me));
+        //thực hiện việc load dữ liệu số trang
+        this.pagination();
         //load dữ liệu từng trang (phân trang)
         $('.number').on('click', 'div', me.pageNumber.bind(me));
         //load dữ liệu trang trước (phân trang)
@@ -51,9 +52,35 @@ class Customer extends BaseJs {
     setDomainNV() {
         this.domainNV = "/api/v1/customers";
     }
-
+ 
     setNumberPage() {
         this.numberPage = "";
+    }
+
+    setCustomerGroup() {
+        this.customerGroup = "/api/v1/customergroups";
+    }
+
+    setTableName() {
+        this.tableName = "Customer";
+    }
+    /**======================================
+ * Hàm chức năng phân trang
+ * Created by mvthanh (19/01/2021)
+ * */
+    pagination() {
+
+        $.ajax({
+            url: "/api/v1/Customers/counts",
+            method: "GET"
+        }).done(function (res) {
+            BaseJs.numberInfor = res;
+            BaseJs.n = Math.ceil(res / 10);
+            updateNumberPage(1, BaseJs.n);
+            viewInforPage(1, 'khách hàng');
+        }).fail(function (res) {
+            console.log(res);
+        })
     }
     /**======================================
     * Hàm thực hiện chức năng phân trang
@@ -62,7 +89,7 @@ class Customer extends BaseJs {
     pageNumber(e) {
         try {
             var value = e.currentTarget.innerText;
-            this.numberPage = "/api/v1/customers/pagination?page=" + value;
+            this.numberPage = "/api/v1/customers/paginations?page=" + value;
             this.loadData();
             $('.number').empty();
             updateNumberPage(value, BaseJs.n);
@@ -80,7 +107,7 @@ class Customer extends BaseJs {
         try {
             var value = $('.number_page:first')[0].innerText;
             if (value > 1) {
-                this.numberPage = "/api/v1/customers/pagination?page=" + (value - 1);
+                this.numberPage = "/api/v1/customers/paginations?page=" + (value - 1);
                 this.loadData();
                 $('.number').empty();
                 updateNumberPage((value - 1), BaseJs.n);
@@ -99,7 +126,7 @@ class Customer extends BaseJs {
         try {
             var value = $('.number_page:first')[0].innerText;
             if (value < BaseJs.n) {
-                this.numberPage = "/api/v1/customers/pagination?page=" + (Number(value) + 1);
+                this.numberPage = "/api/v1/customers/paginations?page=" + (Number(value) + 1);
                 this.loadData();
                 $('.number').empty();
                 updateNumberPage((Number(value) + 1), BaseJs.n);
@@ -116,7 +143,7 @@ class Customer extends BaseJs {
     * */
     firstPage() {
         try {
-            this.numberPage = "/api/v1/customers/pagination?page=" + 1;
+            this.numberPage = "/api/v1/customers/paginations?page=" + 1;
             this.loadData();
             $('.number').empty();
             updateNumberPage(1, BaseJs.n);
@@ -132,11 +159,26 @@ class Customer extends BaseJs {
     * */
     lastPage() {
         try {
-            this.numberPage = "/api/v1/customers/pagination?page=" + BaseJs.n;
+            this.numberPage = "/api/v1/customers/paginations?page=" + BaseJs.n;
             this.loadData();
             $('.number').empty();
             updateNumberPage(BaseJs.n, BaseJs.n);
             viewInforPage(BaseJs.n);
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+    /**
+  * Thực hiện chức năng tìm kiếm
+  * CreatedBy MVThanh (23/01/2021)
+  * */
+    btnFilter() {
+        try {
+            var me = this;
+            var value = $('#txtSearch').val();
+            me.filter = "/api/v1/customers/filters?specs=" + value;
+            me.loadData();
         }
         catch (e) {
             console.log(e);

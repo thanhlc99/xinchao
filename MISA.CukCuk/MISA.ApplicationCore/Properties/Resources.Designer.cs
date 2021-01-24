@@ -79,6 +79,24 @@ namespace MISA.ApplicationCore.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thêm thành công!.
+        /// </summary>
+        public static string Msg_Add_Success {
+            get {
+                return ResourceManager.GetString("Msg_Add_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xóa thành công!.
+        /// </summary>
+        public static string Msg_Delete_Success {
+            get {
+                return ResourceManager.GetString("Msg_Delete_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thông tin {0} đã có trên hệ thống!.
         /// </summary>
         public static string Msg_Duplicate {
@@ -88,11 +106,47 @@ namespace MISA.ApplicationCore.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Có lỗi trong quá trình xử lý!.
+        /// </summary>
+        public static string Msg_Error {
+            get {
+                return ResourceManager.GetString("Msg_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dữ liệu không hợp lệ!.
         /// </summary>
         public static string Msg_IsNotValid {
             get {
                 return ResourceManager.GetString("Msg_IsNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  {0} vượt quá {1} ký tự!.
+        /// </summary>
+        public static string Msg_MaxLength {
+            get {
+                return ResourceManager.GetString("Msg_MaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} không được phép để trống!.
+        /// </summary>
+        public static string Msg_Required {
+            get {
+                return ResourceManager.GetString("Msg_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cập nhật thành công!.
+        /// </summary>
+        public static string Msg_Update_Success {
+            get {
+                return ResourceManager.GetString("Msg_Update_Success", resourceCulture);
             }
         }
         

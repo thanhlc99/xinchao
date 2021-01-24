@@ -16,6 +16,34 @@ namespace MISA.ApplicationCore.Services
         {
             _employeeRepository = employeeRepository;
         }
+
+        #endregion
+
+        #region method
+        public List<Employee> GetEmployeesFilter(string specs, Guid? departmentId, Guid? positionId)
+        {
+            return _employeeRepository.GetEmployeesFilter(specs,departmentId,positionId);
+        }
+
+        public string GetEmployeeCodeMax()
+        {
+           
+                var employeeCode = "NV"+(_employeeRepository.GetEmployeeCodeMax() + 1);
+                return employeeCode;
+          
+        }
+
+        public int GetEmployeeCount()
+        {
+            return _employeeRepository.GetEmployeeCount();
+        }
+
+        public IEnumerable<Employee> GetEmployeesByPage(int pager)
+        {
+            Pager p = new Pager(pager);
+            return _employeeRepository.GetEmployeesByPage(p);
+        }
+
         #endregion
 
     }

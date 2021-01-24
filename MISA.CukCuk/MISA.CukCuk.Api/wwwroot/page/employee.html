@@ -13,6 +13,8 @@
     <link href="/css/common/icon.css" rel="stylesheet" />
     <link href="/css/common/button.css" rel="stylesheet" />
     <link href="/css/common/grid.css" rel="stylesheet" />
+    <link href="/css/common/toast-messager.css" rel="stylesheet" />
+    <link href="/css/common/message.css" rel="stylesheet" />
     <link href="/css/page/employee.css" rel="stylesheet" />
     <!--<link href="/css/common/drowdown.css" rel="stylesheet" />-->
 </head>
@@ -109,7 +111,7 @@
         <!--filter bar-->
         <div class="filter-bar">
             <div class="filter-left">
-                <input class="icon-search input-search" type="text" placeholder="Tìm kiếm theo Mã, Tên khác" />
+                <input class="icon-search input-search" id="txtSearch" type="text" placeholder="Tìm kiếm theo Mã, Tên khác" />
 
             </div>
             <div class="filter-center">
@@ -119,17 +121,17 @@
                 <div api="/api/v1/DepartmentGroups" filter="filterDepartmentGroup">
 
                 </div>
-                <dropdown api="/api/v1/DepartmentGroups"  fieldName="DepartmentGroupId" valueName="DepartmentGroupName"></dropdown>
+                <dropdown api="/api/v1/DepartmentGroups" fieldName="DepartmentGroupId" valueName="DepartmentGroupName"></dropdown>
 
             </div>
             <div class="filter-center">
                 <!--<select id="DepartmentGroupName" valueName="DepartmentGroupId" class="custom" placeholder="Chọn tất cả">
                     <option>Tất cả phòng ban</option>
                 </select>-->
-                <div api="/api/v1/PositionGroups" filter ="filterPositionGroup">
+                <div api="/api/v1/PositionGroups" filter="filterPositionGroup">
 
                 </div>
-                <dropdown api="/api/v1/PositionGroups"  fieldName="PositionGroupId" valueName="PositionGroupName"></dropdown>
+                <dropdown api="/api/v1/PositionGroups" fieldName="PositionGroupId" valueName="PositionGroupName"></dropdown>
             </div>
 
             <div class="filter-right">
@@ -165,18 +167,17 @@
         <!--end table information-->
         <!--paging bar-->
         <div class="paging-bar">
-            <div class="text_left">Hiển thị 1-10/1000 khách hàng</div>
+            <div class="text_left"></div>
             <div class="_center">
                 <div class="icon_firstpage"></div>
                 <div class="icon_prevpage"></div>
-                <div class="number_page">1</div>
-                <div class="number_page">2</div>
-                <div class="number_page">3</div>
-                <div class="number_page">4</div>
+                <div class="number">
+
+                </div>
                 <div class="icon_nextpage"></div>
                 <div class="icon_lastpage"></div>
             </div>
-            <div class="text_right">10 khách hàng/trang</div>
+            <div class="text_right">10 nhân viên/trang</div>
         </div>
         <!--end paging bar-->
     </div>
@@ -197,40 +198,45 @@
                 <div class="m-content_center">
                     <div class="title_content">A. THÔNG TIN CHUNG</div>
                     <div class="brick"></div>
+                    <div id="message">
+                        <div class="message">
+                            Trường này không được để trống!
+                        </div>
+                    </div>
                     <div class="m-row">
                         <p>Mã nhân viên(<span>*</span>)</p>
-                        <input type="text" id="txtEmployeeCode" valueName="EmployeeCode" required />
+                        <input type="text" id="txtEmployeeCode" tabindex="1" valueName="EmployeeCode" required />
                     </div>
                     <div class="m-row">
                         <p>Ngày sinh</p>
                         <div style="position:relative">
                             <div class="box"></div>
                             <img src="/content/icon/date-picker.svg" class="logoDate" />
-                            <input type="text" id="DateOfBirth" valueName="DateOfBirth" format="dd/mm/yyyy" placeholder="_ _/_ _/_ _ _ _" />
+                            <input type="text" id="DateOfBirth" tabindex="3" valueName="DateOfBirth" format="dd/mm/yyyy" placeholder="_ _/_ _/_ _ _ _" />
                         </div>
                     </div>
                     <div class="m-row">
                         <p>Số CMTND/Căn cước(<span>*</span>)</p>
-                        <input type="text" id="txtIdentityCardNumber" valueName="IdentityCardNumber" />
+                        <input type="text" id="txtIdentityCardNumber" tabindex="5" valueName="IdentityCardNumber" />
                     </div>
                     <div class="m-row">
                         <p>Nơi cấp</p>
-                        <input type="text" id="txtPlaceOfIssue" valueName="PlaceOfIssue" />
+                        <input type="text" id="txtPlaceOfIssue" tabindex="7" valueName="PlaceOfIssue" />
                     </div>
                     <div class="m-row">
                         <p>Email(<span>*</span>)</p>
-                        <input type="email" id="txtEmail" valueName="Email" required placeholder="example@domain.com" />
+                        <input type="email" id="txtEmail" valueName="Email" tabindex="8" required placeholder="example@domain.com" />
                     </div>
                 </div>
                 <div class="m-content_right">
                     <div class="m-row">
                         <p>Họ và tên(<span>*</span>)</p>
-                        <input type="text" id="txtFullName" valueName="FullName" required />
+                        <input type="text" id="txtFullName" tabindex="2" valueName="FullName" required />
                     </div>
                     <div class="m-row">
                         <p>Giới tính</p>
                         <div class="custom-select">
-                            <select valueName="Gender" class="custom" name="combobox">
+                            <select valueName="Gender" class="custom" tabindex="4" name="combobox">
                                 <option value="1">Nam</option>
                                 <option value="0">Nữ</option>
                                 <option value="2">Khác</option>
@@ -242,7 +248,7 @@
                         <div style="position:relative">
                             <div class="box"></div>
                             <img src="/content/icon/date-picker.svg" class="logoDate" />
-                            <input type="text" id="LevelDate" format="dd/mm/yyyy" valueName="LevelDate" placeholder="_ _/_ _/_ _ _ _" />
+                            <input type="text" id="LevelDate" tabindex="6" format="dd/mm/yyyy" valueName="LevelDate" placeholder="_ _/_ _/_ _ _ _" />
                         </div>
                     </div>
                     <div class="m-row-hide">
@@ -250,7 +256,7 @@
                     </div>
                     <div class="m-row">
                         <p>Số điện thoại(<span>*</span>)</p>
-                        <input type="text" id="txtPhoneNumber" valueName="PhoneNumber" required />
+                        <input type="text" id="txtPhoneNumber" tabindex="9" valueName="PhoneNumber" required />
                     </div>
                 </div>
             </div>
@@ -260,26 +266,26 @@
                 </div>
                 <div class="m-content_center">
                     <div class="title_content">B. THÔNG TIN CÔNG VIỆC</div>
-                    <div class="brick color"></div>
+                    <div class="brick"></div>
                     <div class="m-row">
                         <p>Vị trí</p>
                         <!--<select id="PositionGroupName" valueName="PositionGroupId" class="custom">
                         </select>-->
-                        <div api="/api/v1/PositionGroups">
+                        <div api="/api/v1/PositionGroups" tabindex="10">
 
                         </div>
                         <dropdown api="/api/v1/PositionGroups" fieldName="PositionGroupId" valueName="PositionGroupName"></dropdown>
                     </div>
                     <div class="m-row">
                         <p>Mã số thuế cá nhân</p>
-                        <input type="text" id="txtPersonalTaxCode" valueName="PersonalTaxCode" />
+                        <input type="text" id="txtPersonalTaxCode" tabindex="12" valueName="PersonalTaxCode" />
                     </div>
                     <div class="m-row">
                         <p>Ngày gia nhập công ty</p>
                         <div style="position:relative">
                             <div class="box"></div>
                             <img src="/content/icon/date-picker.svg" class="logoDate" />
-                            <input type="text" id="JoinDate" valueName="JoinDate" format="dd/mm/yyyy" placeholder="_ _/_ _/_ _ _ _" />
+                            <input type="text" id="JoinDate" tabindex="14" valueName="JoinDate" format="dd/mm/yyyy" placeholder="_ _/_ _/_ _ _ _" />
                         </div>
                     </div>
                 </div>
@@ -288,7 +294,7 @@
                         <p>Phòng ban</p>
                         <!--<select id="DepartmentGroupName" valueName="DepartmentGroupId" class="custom">
                         </select>-->
-                        <div api="/api/v1/DepartmentGroups">
+                        <div api="/api/v1/DepartmentGroups" tabindex="11">
 
                         </div>
                         <dropdown api="/api/v1/DepartmentGroups" fieldName="DepartmentGroupId" valueName="DepartmentGroupName"></dropdown>
@@ -296,14 +302,14 @@
                     <div class="m-row">
                         <p>Mức lương cơ bản</p>
                         <div style="position: relative;">
-                            <input type="text" id="txtSalary" class="salary" formatMoney="vnd" valueName="Salary" />
+                            <input type="text" id="txtSalary" tabindex="13" class="salary" formatMoney="vnd" valueName="Salary" />
                             <span class="placeholder">(VNĐ)</span>
                         </div>
                     </div>
                     <div class="m-row">
                         <p>Tình trạng công việc</p>
                         <div class="custom-select">
-                            <select valueName="WorkStatus" class="custom" name="combobox">
+                            <select valueName="WorkStatus" tabindex="15" class="custom" name="combobox">
                                 <option value="0">Đang làm việc</option>
                                 <option value="1">Đã nghỉ việc</option>
                             </select>
@@ -315,11 +321,11 @@
                 <div class="footer_content">
                     <button class="m-btn m-add" id="btnSave">
                         <div class="icon-add m-icon-save"></div>
-                        <div class="btn-text">Lưu</div>
+                        <div class="btn-text" tabindex="16">Lưu</div>
                     </button>
                 </div>
                 <div class="footer_content_clone">
-                    <button class="btn-no-Icon m-close" id="btnclose">hủy</button>
+                    <button class="btn-no-Icon m-close" tabindex="18" id="btnclose">hủy</button>
                     <button class="btn-no-Icon m-delete m-hide" id="btnDelete">Xóa</button>
                 </div>
             </div>
@@ -333,36 +339,11 @@
     </div>
     <!--===========end icon loading===========-->
     <!--===========notification===========-->
-    <div class="m-hide" id="success">
-        <div class="success">
-            <div class="icon-check">
-                <img src="/content/icon/check.svg" />
-            </div>
-            <div class="title_notification">Nội dung đã được gửi thành công</div>
-            <div class="not-cancel">
-                <img src="/content/icon/x_blue.svg" />
-            </div>
-        </div>
-    </div>
-    <div class="m-hide" id="error">
-        <div class="error">
-            <div class="icon-check m-danger">
-                <img src="/content/icon/alert-triangle.svg" />
-            </div>
-            <div class="title_notification">có lỗi xảy ra, gửi không thành công</div>
-            <div class="not-cancel">
-                <img src="/content/icon/x_danger.svg" />
-            </div>
-        </div>
-    </div>
+    <div id="toast">
 
-    <div class="pop-up-notification">
-        <div class="cancel">X</div>
-        <div class="title_not">Pop-up thông báo</div>
-        <div class="content_not">Dữ liệu không hợp lệ. Vui lòng nhập lại!</div>
-        <div class="header_not">
-            <button class="m-btn m-cancel">Đóng</button>
-        </div>
+    </div>
+    <div id="pop-up-notification" title="Pop-up thông báo">
+       
     </div>
     <!--===========end notification===========-->
 

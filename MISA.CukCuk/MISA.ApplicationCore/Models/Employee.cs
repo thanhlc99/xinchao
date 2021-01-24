@@ -24,10 +24,15 @@ namespace MISA.ApplicationCore.Models
         /// <summary>
         /// mã nhân viên
         /// </summary>
+        [CheckDuplicate]
+        [Required]
+        [DisplayName("Mã nhân viên")]
+        [MaxLength(20)]
         public string EmployeeCode { get; set; }
         /// <summary>
         /// tên đầy đủ nhân viên
         /// </summary>
+        [Required]
         public string FullName { get; set; }
         /// <summary>
         /// ngày tháng năm sinh
@@ -63,6 +68,7 @@ namespace MISA.ApplicationCore.Models
         /// <summary>
         /// Số chứng minh nhân dân/ thẻ căn cước
         /// </summary>
+        [Required]
         public string IdentityCardNumber { get; set; }
         /// <summary>
         /// Ngày cấp thẻ chứng minh thư nhân dân/căn cước
@@ -75,15 +81,17 @@ namespace MISA.ApplicationCore.Models
         /// <summary>
         /// địa chỉ email
         /// </summary>
+        [Required]
         public string Email { get; set; }
         /// <summary>
         /// số điện thoại nhân viên
         /// </summary>
+        [Required]
         public string PhoneNumber { get; set; }
         /// <summary>
         /// Vị trí làm việc trong công ty
         /// </summary>
-        public Guid PositionGroupId { get; set; }
+        public Guid? PositionGroupId { get; set; }
         /// <summary>
         /// Tên vị trí làm việc
         /// </summary>
@@ -91,7 +99,7 @@ namespace MISA.ApplicationCore.Models
         /// <summary>
         /// phòng ban làm việc
         /// </summary>
-        public Guid DepartmentGroupId { get; set; }
+        public Guid? DepartmentGroupId { get; set; }
         /// <summary>
         /// tên phòng ban làm việc
         /// </summary>

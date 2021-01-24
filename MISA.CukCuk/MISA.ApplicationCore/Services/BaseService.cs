@@ -32,12 +32,11 @@ namespace MISA.ApplicationCore.Services
             {
                 _serviceResult.Data= _baseRepository.Add(entity);
                 _serviceResult.MISACode = Enums.MISACode.IsValid;
-                _serviceResult.Messenger = "Thêm thành công!";
+                _serviceResult.Messenger = Properties.Resources.Msg_Add_Success;
                 return _serviceResult;
             }
             else
             {
-
                 return _serviceResult;
             }
         }
@@ -49,13 +48,13 @@ namespace MISA.ApplicationCore.Services
             if (res > 0)
             {
                 _serviceResult.Data = res;
-                _serviceResult.Messenger = "Xóa thành công!";
+                _serviceResult.Messenger = Properties.Resources.Msg_Delete_Success;
                 _serviceResult.MISACode = Enums.MISACode.Success;
             }
             else
             {
                 _serviceResult.Data = res;
-                _serviceResult.Messenger = "Có lỗi trong quá trình xử lý!";
+                _serviceResult.Messenger = Properties.Resources.Msg_Error;
                 _serviceResult.MISACode = Enums.MISACode.NotValid;
             }    
             return _serviceResult;
@@ -81,7 +80,7 @@ namespace MISA.ApplicationCore.Services
             {
                 _serviceResult.Data = _baseRepository.Update(entity);
                 _serviceResult.MISACode = Enums.MISACode.IsValid;
-                _serviceResult.Messenger = "Cập nhật thành công!";
+                _serviceResult.Messenger = Properties.Resources.Msg_Update_Success;
                 return _serviceResult;
             }
             else
@@ -120,8 +119,7 @@ namespace MISA.ApplicationCore.Services
                     if(propertyValue == null)
                     {
                         isValidate = false;
-                        misaArrayError.Add($"Thông tin {displayName} không được phép để trống!");
-                        
+                        misaArrayError.Add(string.Format(Properties.Resources.Msg_Required,displayName));
                         _serviceResult.Messenger = Properties.Resources.Msg_IsNotValid;
                         _serviceResult.MISACode = Enums.MISACode.NotValid;
                     }
@@ -136,7 +134,7 @@ namespace MISA.ApplicationCore.Services
                             isValidate = false;
                             misaArrayError.Add(string.Format(Properties.Resources.Msg_Duplicate,displayName));
                             _serviceResult.Messenger = Properties.Resources.Msg_IsNotValid;
-                        _serviceResult.MISACode = Enums.MISACode.NotValid;
+                            _serviceResult.MISACode = Enums.MISACode.NotValid;
                         }    
                     }
                 //check độ dài chuỗi
@@ -149,7 +147,7 @@ namespace MISA.ApplicationCore.Services
                     if(propertyValue.ToString().Trim().Length>20)
                     {
                         isValidate = false;
-                        misaArrayError.Add(msg??$"thông tin này vượt quá {length} ký tự cho phép!");
+                        misaArrayError.Add(string.Format(Properties.Resources.Msg_MaxLength,displayName,length));
                         _serviceResult.Messenger = Properties.Resources.Msg_IsNotValid;
                         _serviceResult.MISACode = Enums.MISACode.NotValid;
                     }

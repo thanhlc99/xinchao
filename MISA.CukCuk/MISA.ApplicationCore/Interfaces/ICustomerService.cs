@@ -21,7 +21,7 @@ namespace MISA.ApplicationCore.Interfaces
         /// </summary>
         /// <param name="page">số trang</param>
         /// <returns>Danh sách 10 phần tử</returns>
-        IEnumerable<Customer> GetCustomerByPage(int page);
+        IEnumerable<Customer> GetCustomersByPage(int page);
         /// <summary>
         /// lấy tổng số bản ghi trong database
         /// </summary>

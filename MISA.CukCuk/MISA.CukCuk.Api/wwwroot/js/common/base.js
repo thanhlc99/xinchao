@@ -4,22 +4,47 @@
  * */
 class BaseJs {
     constructor() {
+        
+        /**
+         * api load dữ liệu trang
+         * */
         this.domainNV = '';
+        /**
+         * api load dữ liệu tìm kiếm
+         * */
         this.filter = '';
+        /**
+         * api load dữ liệu số trang
+         * */
         this.numberPage = '';
+        /**
+         * api load dữ liệu select (employee (departmentGroup))
+         * */
         this.departmentGroup = '';
+        /**
+         * api load dữ liệu select (employee (positionGroup))
+         * */
         this.positionGroup = '';
+        /**
+         * load tên trang truy cập
+         * */
         this.tableName = "";
+        /**
+         * api load dữ liệu select (customer(customergroup))
+         * */
+        this.customerGroup = '';
+   
+        /*====================*/
         this.setDomainNV();
         this.setFilter();
         this.setDepartmentGroup();
         this.setPositionGroup();
         this.setTableName();
         this.setNumberPage();
+        this.setCustomerGroup();
         //thực hiện việc load dữ liệu ra
         this.loadData();
-        //thực hiện việc load dữ liệu số trang
-        this.pagination();
+        
         this.initEvents();
     }
 
@@ -38,8 +63,15 @@ class BaseJs {
     setFilter() {
 
     }
+/**======================================
+* Hàm xét api lấy tổng số bản ghi trong csdl
+* Created by mvthanh (22/01/2021)
+**/
+    setPageCount() {
+
+    }
     /**======================================
-    * Hàm xét đường dẫn tìm kiếm
+    * Hàm xét đường dẫn số trang
     * Created by mvthanh (19/01/2021)
     **/
     setNumberPage() {
@@ -59,7 +91,17 @@ class BaseJs {
     setPositionGroup() {
 
     }
+    /**
+     * hàm load dữ liệu select (customer(customergroup))
+     * CreatedBy mvthanh(22/01/2021)
+     * */
+    setCustomerGroup() {
 
+    }
+/**
+*Hàm xét tên để lấy obj.entityId
+* Created by mvthanh (21/01/2021)
+* */
     setTableName() {
 
     }
@@ -94,19 +136,11 @@ class BaseJs {
 
         //#endregion
 
-        //#region đóng pop-up cảnh báo nhập dữ liệu không hợp lệ
-        $('.cancel').click(function () {
-            $('.pop-up-notification').slideUp(1000);
-        })
-        $('.m-cancel').click(function () {
-            $('.pop-up-notification').slideUp(1000);
-        })
-        //#endregion
-
         //#region validate(kiểm tra) dữ liệu nhập vào(input[text] or [email])
         //validate dữ liệu input
         $('input[required]').blur(function () {
             var value = $(this).val();
+
             if (!value) {
                 $(this).addClass('border-red');
                 $(this).attr('title', 'Trường này không được để trống!');
@@ -116,7 +150,11 @@ class BaseJs {
                 $(this).attr('validate', true);
                 $(this).removeClass('border-red');
             }
-        })
+        });
+
+        //$('input[required]').mouseover(function () {
+        //    $(this).
+        //});
 
         //validate dữ liệu đầu vào input email
         $('input[type="email"]').blur(function () {
@@ -130,7 +168,7 @@ class BaseJs {
                 $(this).attr('validate', true);
                 $(this).removeClass('border-red');
             }
-        })
+        });
         //#endregion
 
         //sự kiến ấn nút lưu
@@ -158,10 +196,16 @@ class BaseJs {
     loadData() {
         var me = this;
         try {
+          
+            
             //xóa sạch dữ liệu lúc trước
             $('table tbody tr').empty();
             $('div[api]').empty();
-        
+
+            $('#DateOfBirth').datepicker();
+            $('#JoinDate').datepicker();
+            $('#LevelDate').datepicker();
+
             var columns = $('#table thead th');//lấy số lượng cột th
             var getDataUrl = this.domainNV;//lấy đường dẫn dữ liệu (api lấy dữ liệu)
            
@@ -184,17 +228,18 @@ class BaseJs {
             method: "GET",
             async: true
         }).done(function (res) {
-            
+
             $.each(res, function (index, obj) {
                 if (res) {
                     var tr = $(`<tr></tr>`);
+                    debugger;
                     if (me.tableName == "Employee") {
                         $(tr).data('objId', obj.EmployeeId);
                     }
                     else {
-                        $(tr).data('objId', obj.CustomerId);
+                            $(tr).data('objId', obj.CustomerId);
                     }
-
+                    
                     $.each(columns, function (index, th) {
                         var td = $(`<td></td>`);
                         var fielNames = $(th).attr('fieldName');//lấy cái để map dữ liệu vào
@@ -221,6 +266,7 @@ class BaseJs {
                     })
                 }
                 $('table tbody').append(tr);
+               
                 //ẩn icoin load
                 $('#load').hide();
             })
@@ -234,28 +280,13 @@ class BaseJs {
             //thực hiện load dữ liệu select box
             loadCombobox(this.departmentGroup);
             loadCombobox(this.positionGroup);
+            loadCombobox(this.customerGroup);
         }
         catch (e) {
             console.log(e);
         }
     }
-    /**======================================
-    * Hàm chức năng phân trang
-    * Created by mvthanh (19/01/2021)
-    * */
-    pagination() {
-       
-        $.ajax({
-            url: "/api/v1/Customers/count",
-            method: "GET"
-        }).done(function (res) {
-            BaseJs.numberInfor=res;
-            BaseJs.n = Math.ceil(res / 10);
-            updateNumberPage(1, BaseJs.n);
-        }).fail(function (res) {
-            console.log(res);
-        })
-    }
+   
 
 
     /**======================================
@@ -263,11 +294,6 @@ class BaseJs {
     * Created by mvthanh (26/12/2020)
     * */
     btnAddOnClick() {
-
-        $('#DateOfBirth').datepicker();
-        $('#JoinDate').datepicker();
-        $('#LevelDate').datepicker();
-
         var me = this;
         try {
             me.formMethod = "Add";
@@ -275,25 +301,7 @@ class BaseJs {
             dialogDefault.dialog('open');
             $('input:not(input[type="radio"])').val(null);
             $('#btnDelete').addClass("m-hide");
-            //load dữ liệu select box
-            var select = $('select#CustomerGroupName');
-            select.empty();
-            
-            $('#load').show();
-            $.ajax({
-                url: "/api/v1/customergroups",
-                method: "GET"
-            }).done(function (res) {
-                if (res) {
-                    $.each(res, function (index, value) {
-                        var option = $(`<option value="${value.CustomerGroupId}">${value.CustomerGroupName}</option>`);
-                        select.append(option);
-                    })
-                }
-                $('#load').hide();
-            }).fail(function (res) {
-                $('#load').hide();
-            })
+           
         }
         catch (e) {
             console.log(e);
@@ -313,7 +321,6 @@ class BaseJs {
             $.each(inputValues, function (index, input) {
                 $(input).trigger('blur');
             })
-            debugger;
             var notValue = $('input[validate="false"]');
             if (notValue && notValue.length > 0) {
                 notValue[0].focus();
@@ -321,53 +328,76 @@ class BaseJs {
                 return;
             }
             //thu thập thông tin dữ liệu được nhập ->built thành objJson
-            var objCustomers = {};
+            var objEntity = {};
             var inputs = $('input[valueName],select[valueName]');//select tất cả các thẻ input
             $.each(inputs, function (index, value) {
                 
                 var propertieName = $(this).attr('valueName');
-                var valueCustomer = $(this).val();
+                var valueEntity = $(this).val();
+                //chuyển đổi cho đúng kiểu dữ liệu trước khi gửi đi
                 if ($(this).attr('type') == "radio") {
                     if (this.checked) {
-                        objCustomers[propertieName] = valueCustomer;
+                        objEntity[propertieName] = valueEntity;
                     }
                 }
                 else {
-                    objCustomers[propertieName] = valueCustomer;
+                    if ($(this).attr('formatMoney') == "vnd") {
+                        objEntity[propertieName] = formatNumber(valueEntity);
+                    }
+                    else {
+                        if ($(this).attr('format') == "dd/mm/yyyy") {
+                            objEntity[propertieName] = toDate(valueEntity);
+                        }
+                        else {
+                            objEntity[propertieName] = valueEntity;
+                        }
+                    }
                 }
-
             })
 
             var method = "POST";
             var url = me.domainNV;
             if (me.formMethod == "Edit") {
                 method = "PUT";
-                objCustomers.CustomerId = me.objId;
+                // if (me.tableName == "Employee") {
+                //    objEmtity.EmployeeId = me.objId;
+                //}
+                //else {
+                //    objEmtity.CustomerId = me.objId;
+                //}
+                //objEntity.CustomerId = me.objId;
                 url = url + "/" + me.objId;
             }
             //gọi service thực hiện lưu
             $.ajax({
                 url: url,
                 method: method,
-                data: JSON.stringify(objCustomers),
+                data: JSON.stringify(objEntity),
                 contentType: "application/json"
             }).done(function (res) {
+                //console.log(res[Object.keys(res)[1]]);
                 if (res) {
-                    debugger;
-                    $('#success').removeClass("m-hide");
-                    $('#success').fadeIn(1000);
-                    $('#success').delay(1000).slideUp(1000);
+                            //đưa ra thông báo thành công
+                            toast({
+                                message: res[Object.keys(res)[1]],
+                                type: 'success',
+                                duration: 3000
+                            })
+                    //đóng dialog
                     dialogDefault.dialog('close');
-                    $('table tbody tr').empty();
+                    //load lại dữ liệu
                     me.loadData();
                 }
             }).fail(function (res) {
-                $('#error').fadeIn(1000);
-                $('#error').delay(1000).slideUp(1000);
                 console.log(res);
+                //đưa ra thông báo lỗi
+                //console.log(res.responseJSON.Data[0]);
+                toast({
+                    message: res.responseJSON.Data[0],
+                    type: 'warning',
+                    duration: 3000
+                })
             })
-
-            //lưu ->đưa ra thông báo -> ẩn form -> load lại dl
         }
         catch (e) {
             console.log(e);
@@ -407,8 +437,7 @@ class BaseJs {
                     var datetimes = $(this).attr('format');//;lấy các thẻ cần format date
                     var money = $(this).attr('formatMoney');//lấy các thẻ cần format money
                     var combobox = $(this).attr('name');//lấy các thẻ cần hiển thị combobox
-                    debugger;
-                    
+
                     var value = res[propertieName];
                     //hiển thị dữ liệu lên datetime
                     if (datetimes) {
@@ -471,21 +500,58 @@ class BaseJs {
     btnDelete() {
         var me = this;
         try {
-            //thực hiện xóa
-            $.ajax({
-                url: me.domainNV + "/" + me.objId,
-                method: "Delete"
-            }).done(function (res) {
-                //đóng dialog
-                dialogDefault.dialog('close');
-                $('tr.row-click').removeClass("row-click");
-                //load lại
-                $('table tbody tr').empty();
-                me.loadData();
-            }).fail(function (res) {
-                console.log(res);
+            //Hiển thị dialog xác nhận xóa
+            var dialogPopUp = $('#pop-up-notification').dialog({
+                autoOpen: false,
+                fluid: true,
+                minWidth: 390,
+                resizable: true,
+                position: ({
+                    my: "center", at: "center", of: window
+                }),
+                modal: true
+            });
+            dialogPopUp.dialog('open');
+            var htmlPop = ` <div class="pop-up-content">
+                <div class="pop-up-icon"></div>
+                <div class="content_not">Bạn có chắc chắn muốn xóa!</div>
+            </div>
+            <div class="header_not">
+                <button class="pop-up-delete btn-pop" id="btnPopDelete">Xóa</button>
+                <button class="pop-up-cancel btn-pop" id="btnPopCancel">Hủy</button>
+            </div>`;
+            $('#pop-up-notification').append(htmlPop);
+            //kích nút hủy
+            $('#btnPopCancel').click(function () {
+                dialogPopUp.dialog('close');
+                $('#pop-up-notification').empty();
             })
-
+            //kích nút xóa
+            $('#btnPopDelete').click(function () {
+                ////thực hiện xóa
+                $.ajax({
+                    url: me.domainNV + "/" + me.objId,
+                    method: "Delete"
+                }).done(function (res) {
+                    //đóng dialog
+                    dialogDefault.dialog('close');
+                    dialogPopUp.dialog('close');
+                    //xóa bỏ màu ở dòng ấn vô
+                    $('tr.row-click').removeClass("row-click");
+                    //đưa ra thông báo thành công
+                    toast({
+                        message: res[Object.keys(res)[1]],
+                        type: 'success',
+                        duration: 3000
+                    })
+                    //load lại
+                    $('#pop-up-notification').empty();
+                    viewInforPage(1, 'nhân viên');
+                    me.loadData();
+                }).fail(function (res) {
+                    console.log(res);
+                })
+            })
         }
         catch (e) {
             console.log(e);

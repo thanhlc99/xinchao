@@ -31,8 +31,8 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var customers = _baseService.GetEntities();
-            return Ok(customers);
+            var entitys = _baseService.GetEntities();
+            return Ok(entitys);
         }
 
         /// <summary>
@@ -115,7 +115,6 @@ namespace MISA.CukCuk.Api.Controllers
             if (serviceResult.MISACode == ApplicationCore.Enums.MISACode.Success)
             {
                 return Ok(serviceResult);
-               
             }
             else
             {

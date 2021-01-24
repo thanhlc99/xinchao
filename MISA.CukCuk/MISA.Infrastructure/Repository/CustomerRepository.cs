@@ -24,7 +24,7 @@ namespace MISA.Infrastructure.Repository
             return customerDuplicate;
         }
 
-        public IEnumerable<Customer> GetCustomerByPage(Pager pager)
+        public IEnumerable<Customer> GetCustomersByPage(Pager pager)
         {
             var param = new DynamicParameters();
             param.Add("@Offset", dbType: DbType.Int32, value:pager.Offset, direction: ParameterDirection.Input);
@@ -43,11 +43,11 @@ namespace MISA.Infrastructure.Repository
         {
             //build tham số đầu vào cho store
             var input = specs != null ? specs : string.Empty;
-            if (string.IsNullOrEmpty(specs))
-            {
-                var entity = dbConnection.Query<Customer>("Proc_GetCustomers", commandType: CommandType.StoredProcedure).ToList();
-                return entity;
-            }
+            //if (string.IsNullOrEmpty(specs))
+            //{
+            //    var entity = dbConnection.Query<Customer>("Proc_GetCustomers", commandType: CommandType.StoredProcedure).ToList();
+            //    return entity;
+            //}
             var parameters = new DynamicParameters();
             parameters.Add("@CustomerCode", input,DbType.String);
             parameters.Add("@FullName", input,DbType.String);

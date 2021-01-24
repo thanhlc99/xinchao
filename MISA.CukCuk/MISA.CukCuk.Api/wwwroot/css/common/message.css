@@ -1,0 +1,29 @@
+.message{
+    width: 120px;
+    text-align: center;
+    height: 35px;
+    padding: 10px 16px;
+    background-color: #F65454;
+    font-size: 13px;
+    z-index: 9999;
+    color: #ffffff;
+    border-radius: 4px;
+    
+}
+.message::after{
+    content: '';
+    display: block;
+    z-index: 9999;
+    width: 15px;
+    height: 15px;
+    margin: 0 auto;
+    transform: rotate(45deg);
+    background-color: #F65454;
+    border: 1px solid #F65454;
+}
+#message {
+    position: absolute;
+    z-index: 9999;
+    top: 0px;
+    left: 289px;
+}

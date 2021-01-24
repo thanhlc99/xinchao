@@ -46,10 +46,10 @@ namespace MISA.ApplicationCore.Services
             return _customerRepository.GetCustomersFilter(specs);
         }
 
-        public IEnumerable<Customer> GetCustomerByPage(int page)
+        public IEnumerable<Customer> GetCustomersByPage(int page)
         {
             Pager p = new Pager(page);
-            return _customerRepository.GetCustomerByPage(p);
+            return _customerRepository.GetCustomersByPage(p);
         }
 
         public int GetCustomerCount()
