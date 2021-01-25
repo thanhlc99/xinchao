@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace MISA.CukCuk.Api.Controllers
 {
-   
+    /// <summary>
+    /// điều khiển lấy dữ liệu bảng DepartmentGroups
+    /// </summary>
     public class DepartmentGroupsController : BaseEntityController<DepartmentGroup>
     {
         IBaseService<DepartmentGroup> _baseService;

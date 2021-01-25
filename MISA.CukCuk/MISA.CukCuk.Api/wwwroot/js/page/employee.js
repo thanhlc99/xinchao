@@ -27,11 +27,12 @@ class Employee extends BaseJs {
     initEvents() {
         var me = this;
         super.initEvents();
-        
+
         //Thực hiện chức năng tìm kiếm
         $('#txtSearch').blur(me.btnFilter.bind(me));
         //thực hiện việc hiển thị tiền tệ theo định dạng vnđ
         $('#txtSalary').blur(me.viewSalary);
+
 
         //thực hiện việc load dữ liệu số trang
         this.pagination();
@@ -45,9 +46,9 @@ class Employee extends BaseJs {
         $('.icon_firstpage').click(me.firstPage.bind(me));
         //load dữ liệu trang cuối cùng (phân trang)
         $('.icon_lastpage').click(me.lastPage.bind(me));
-       
+
     }
-   
+
     setFilter() {
         this.filter = "";
     }
@@ -66,15 +67,15 @@ class Employee extends BaseJs {
 
     loadData() {
         super.loadData();
-        //mở datetimepicker
-        $('#DateOfBirth').datepicker();
-        $('#JoinDate').datepicker();
-        $('#LevelDate').datepicker();
-         //thực hiện load dữ liệu select box
+        ////mở datetimepicker
+        //$('#DateOfBirth').datepicker();
+        //$('#JoinDate').datepicker();
+        //$('#LevelDate').datepicker();
+        //thực hiện load dữ liệu select box
         loadCombobox("/api/v1/DepartmentGroups");
         loadCombobox("/api/v1/PositionGroups");
     }
-    
+
     btnAddOnClick() {
         super.btnAddOnClick();
         //lấy ra mã nhân viên đã tăng lên 1 đơn vị
@@ -118,7 +119,7 @@ class Employee extends BaseJs {
             this.loadData();
             $('.number').empty();
             updateNumberPage(value, BaseJs.n);
-            viewInforPage(value,'nhân viên');
+            viewInforPage(value, 'nhân viên');
         }
         catch (e) {
             console.log(e);
@@ -136,7 +137,7 @@ class Employee extends BaseJs {
                 this.loadData();
                 $('.number').empty();
                 updateNumberPage((value - 1), BaseJs.n);
-                viewInforPage(value - 1,'nhân viên');
+                viewInforPage(value - 1, 'nhân viên');
             }
         }
         catch (e) {
@@ -155,7 +156,7 @@ class Employee extends BaseJs {
                 this.loadData();
                 $('.number').empty();
                 updateNumberPage((Number(value) + 1), BaseJs.n);
-                viewInforPage(Number(value) + 1,'nhân viên');
+                viewInforPage(Number(value) + 1, 'nhân viên');
             }
         }
         catch (e) {
@@ -172,7 +173,7 @@ class Employee extends BaseJs {
             this.loadData();
             $('.number').empty();
             updateNumberPage(1, BaseJs.n);
-            viewInforPage(1,'nhân viên');
+            viewInforPage(1, 'nhân viên');
         }
         catch (e) {
             console.log(e);
@@ -188,7 +189,7 @@ class Employee extends BaseJs {
             this.loadData();
             $('.number').empty();
             updateNumberPage(BaseJs.n, BaseJs.n);
-            viewInforPage(BaseJs.n,'nhân viên');
+            viewInforPage(BaseJs.n, 'nhân viên');
         }
         catch (e) {
             console.log(e);

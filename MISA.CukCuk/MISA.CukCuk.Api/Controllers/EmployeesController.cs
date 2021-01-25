@@ -5,11 +5,14 @@ using System;
 
 namespace MISA.CukCuk.Api.Controllers
 {
+    /// <summary>
+    /// điều khiển lấy dữ liệu bảng Employee
+    /// </summary>
     public class EmployeesController : BaseEntityController<Employee>
     {
 
         IEmployeeService _employeeService;
-        public EmployeesController(IEmployeeService employeeService):base(employeeService)
+        public EmployeesController(IEmployeeService employeeService) : base(employeeService)
         {
             _employeeService = employeeService;
         }
@@ -24,7 +27,7 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpGet("filters")]
         public IActionResult GetEmployeesFilter([FromQuery] string specs, [FromQuery] Guid? departmentId, [FromQuery] Guid? positionId)
         {
-            return Ok(_employeeService.GetEmployeesFilter(specs,departmentId,positionId));
+            return Ok(_employeeService.GetEmployeesFilter(specs, departmentId, positionId));
         }
         /// <summary>
         /// thực hiện lấy thông tin theo số trang truyền lên

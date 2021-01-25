@@ -52,7 +52,7 @@ class Customer extends BaseJs {
     setDomainNV() {
         this.domainNV = "/api/v1/customers";
     }
- 
+
     setNumberPage() {
         this.numberPage = "";
     }
@@ -64,8 +64,8 @@ class Customer extends BaseJs {
     loadData() {
         super.loadData();
         //mở datetimepicker
-        $('#DateOfBirth').datepicker();
-         //thực hiện load dữ liệu select box
+        //$('#DateOfBirth').datepicker();
+        //thực hiện load dữ liệu select box
         loadCombobox("/api/v1/customergroups");
     }
 

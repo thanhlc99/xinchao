@@ -57,11 +57,13 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpPost]
         public IActionResult Post(TEntity entity)
         {
+            //gọi service lấy dữ liệu
             var serviceResult = _baseService.Add(entity);
+
             if (serviceResult.MISACode == ApplicationCore.Enums.MISACode.IsValid)
             {
                 return Ok(serviceResult);
-                
+
             }
             else
             {
@@ -77,14 +79,15 @@ namespace MISA.CukCuk.Api.Controllers
         /// <returns>một thông tin nghiệp vụ</returns>
         /// CreatedBy: MVThanh(09/01/2021)
         [HttpPut("{id}")]
-        public IActionResult Put([FromRoute] string id,[FromBody] TEntity entity)
+        public IActionResult Put([FromRoute] string id, [FromBody] TEntity entity)
         {
             var keyProperty = entity.GetType().GetProperty($"{typeof(TEntity).Name}Id");
-            if(keyProperty.PropertyType == typeof(Guid))
+            //kiểm tra dữ liệu đầu vào ép kiểu
+            if (keyProperty.PropertyType == typeof(Guid))
             {
-                keyProperty.SetValue(entity,Guid.Parse(id));
+                keyProperty.SetValue(entity, Guid.Parse(id));
             }
-            else if(keyProperty.PropertyType == typeof(int))
+            else if (keyProperty.PropertyType == typeof(int))
             {
                 keyProperty.SetValue(entity, int.Parse(id));
             }
@@ -92,11 +95,11 @@ namespace MISA.CukCuk.Api.Controllers
             {
                 keyProperty.SetValue(entity, id);
             }
-
+            //gọi service lấy dữ liệu
             var serviceResult = _baseService.Update(entity);
             if (serviceResult.MISACode == ApplicationCore.Enums.MISACode.IsValid)
             {
-               
+
                 return Ok(serviceResult);
             }
             else
@@ -114,6 +117,7 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
+            //gọi service lấy dữ liệu
             var serviceResult = _baseService.Delete(Guid.Parse(id));
             if (serviceResult.MISACode == ApplicationCore.Enums.MISACode.Success)
             {

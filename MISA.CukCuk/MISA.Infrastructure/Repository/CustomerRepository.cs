@@ -13,23 +13,23 @@ namespace MISA.Infrastructure.Repository
 {
     public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
     {
-        public CustomerRepository(IConfiguration configuration) :base(configuration)
+        public CustomerRepository(IConfiguration configuration) : base(configuration)
         {
 
         }
 
         public Customer GetCustomerByCode(string customerCode)
         {
-            var customerDuplicate = dbConnection.Query<Customer>("Proc_GetCustomerByCode",commandType:CommandType.StoredProcedure).FirstOrDefault();
+            var customerDuplicate = dbConnection.Query<Customer>("Proc_GetCustomerByCode", commandType: CommandType.StoredProcedure).FirstOrDefault();
             return customerDuplicate;
         }
 
         public IEnumerable<Customer> GetCustomersByPage(Pager pager)
         {
             var param = new DynamicParameters();
-            param.Add("@Offset", dbType: DbType.Int32, value:pager.Offset, direction: ParameterDirection.Input);
+            param.Add("@Offset", dbType: DbType.Int32, value: pager.Offset, direction: ParameterDirection.Input);
             param.Add("@PageSize", dbType: DbType.Int32, value: pager.PageSize, direction: ParameterDirection.Input);
-            var results = dbConnection.Query<Customer>("Proc_GetCustomerByPage", param, commandType:CommandType.StoredProcedure);
+            var results = dbConnection.Query<Customer>("Proc_GetCustomerByPage", param, commandType: CommandType.StoredProcedure);
             return results;
         }
 
@@ -49,9 +49,9 @@ namespace MISA.Infrastructure.Repository
                 return entity;
             }
             var parameters = new DynamicParameters();
-            parameters.Add("@CustomerCode", input,DbType.String);
-            parameters.Add("@FullName", input,DbType.String);
-            parameters.Add("@PhoneNumber", input,DbType.String);
+            parameters.Add("@CustomerCode", input, DbType.String);
+            parameters.Add("@FullName", input, DbType.String);
+            parameters.Add("@PhoneNumber", input, DbType.String);
             var customers = dbConnection.Query<Customer>("Proc_GetCustomerFilter", parameters, commandType: CommandType.StoredProcedure).ToList();
             return customers;
         }

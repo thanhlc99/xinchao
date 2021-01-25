@@ -151,6 +151,13 @@ class BaseJs {
         //sự kiến ấn nút lưu
         $('#btnSave').click(me.btnSaveOnClick.bind(me));
 
+        //thực hiện hiển thị dd/mm/yyyy
+        //$('input[format="dd/mm/yyyy"]').change(function () {
+        //    var value = $(this).val();
+        //    value = formatDate(value);
+        //    $(this).val(value);
+        //});
+
     }
     /**======================================
     * Hàm chức năng load lại dữ liệu trên trang
@@ -307,19 +314,21 @@ class BaseJs {
                 }
                 else {
                     if ($(this).attr('formatMoney') == "vnd") {
+                        //chuyển từ string sang number
                         objEntity[propertieName] = formatNumber(valueEntity);
                     }
                     else {
-                        if ($(this).attr('format') == "dd/mm/yyyy") {
-                            objEntity[propertieName] = toDate(valueEntity);
-                        }
-                        else {
+                        
+                        //if ($(this).attr('format') == "dd/mm/yyyy") {
+                        //    objEntity[propertieName] = toDate(valueEntity);
+                        //}
+                        //else {
                             objEntity[propertieName] = valueEntity;
-                        }
+                        //}
                     }
                 }
             })
-            debugger;
+            
             var method = "POST";
             var url = me.domainNV;
             if (me.formMethod == "Edit") {
@@ -414,9 +423,10 @@ class BaseJs {
                     var combobox = $(this).attr('name');//lấy các thẻ cần hiển thị combobox
 
                     var value = res[propertieName];
+                    
                     //hiển thị dữ liệu lên datetime
                     if (datetimes) {
-                        value = formatDate(res[propertieName]);
+                        value = formatYYMMDD(res[propertieName]);
                     }
                     //hiển thị dữ liệu money
                     if (money) {
@@ -526,7 +536,7 @@ class BaseJs {
                         message: res[Object.keys(res)[1]],
                         type: 'success',
                         duration: 3000
-                    })
+                    });
                     //load lại
                     $('#pop-up-notification').empty();
                     viewInforPage(1, 'nhân viên');
@@ -539,7 +549,7 @@ class BaseJs {
                             message: res.responseJSON.Messenger,
                             type: 'error',
                             duration: 3000
-                        })
+                        });
                     }
                 })
             });

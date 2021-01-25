@@ -5,11 +5,13 @@ using MISA.ApplicationCore.Enums;
 
 namespace MISA.CukCuk.Api.Controllers
 {
-   
+    /// <summary>
+    /// điều khiển lấy dữ liệu bảng Customer
+    /// </summary>
     public class CustomersController : BaseEntityController<Customer>
     {
         ICustomerService _customerService;
-        public CustomersController(ICustomerService customerService):base(customerService)
+        public CustomersController(ICustomerService customerService) : base(customerService)
         {
             _customerService = customerService;
         }

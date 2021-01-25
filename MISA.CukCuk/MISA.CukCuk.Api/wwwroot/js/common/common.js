@@ -51,7 +51,7 @@ function formatNumber(value) {
 function toDate(selector) {
     if (selector) {
         var from = selector.split("/")
-        return new Date(from[2], from[1] - 1, from[0])
+        return new Date(from[1] - 1,from[2], from[0])
     }
 }
 /**------------------------------------------
@@ -59,19 +59,19 @@ function toDate(selector) {
  * Created by mvthanh(2020/12/25)
  * @param {any} date tham số có kiểu dữ liệu bất kỳ
  */
-//function formatYYMMDD(date) {
-//    var d = new Date(date),
-//        day = '' + d.getDate(),
-//        month = '' + (d.getMonth() + 1),
-//        year = d.getFullYear();
-
-//    if (month.length < 2)
-//        month = '0' + month;
-//    if (day.length < 2)
-//        day = '0' + day;
-
-//    return [year, month, day].join('-');
-//}
+function formatYYMMDD(date) {
+    var date = new Date(date);
+    if (Number.isNaN(date.getTime())) {
+        return "";
+    } else {
+        var day = date.getDate(),
+            month = date.getMonth() + 1,
+            year = date.getFullYear();
+        day = day < 10 ? '0' + day : day;
+        month = month < 10 ? '0' + month : month;
+        return year + '-' + month + '-' + day;
+    }
+}
 /**
  * update lại số thứ tự trang
  * Created by mvthanh(19/01/2021)
@@ -97,17 +97,17 @@ function updateNumberPage(i, n) {
  * @param {any} i số trang
  * @param {any} name text hiển thị kèm
  */
-function viewInforPage(i,name) {
+function viewInforPage(i, name) {
     $('.text_left').empty();
     var numberText = ``;
     if (i == BaseJs.n) {
-        numberText = 'Hiển thị '+ BaseJs.numberInfor + '/' + BaseJs.numberInfor+' ' + name ;
+        numberText = 'Hiển thị ' + BaseJs.numberInfor + '/' + BaseJs.numberInfor + ' ' + name;
     } else if (i > 1) {
-        numberText = 'Hiển thị '+ ((i * 10) - 10) + '-' + (i * 10) + '/' + BaseJs.numberInfor+' ' +name;
+        numberText = 'Hiển thị ' + ((i * 10) - 10) + '-' + (i * 10) + '/' + BaseJs.numberInfor + ' ' + name;
     }
     else {
         ////Hiển thị số lượng bản ghi
-        numberText = `Hiển thị 1-10/` + BaseJs.numberInfor+' ' + name;
+        numberText = `Hiển thị 1-10/` + BaseJs.numberInfor + ' ' + name;
     }
     $('.text_left').append(numberText);
 }

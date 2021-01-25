@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj": {}
+    "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
+    "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
+        "projectUniqueName": "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
         "projectName": "MISA.ApplicationCore",
-        "projectPath": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
-        "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\obj\\",
+        "projectPath": "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
+        "packagesPath": "C:\\Users\\mvthanh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mvthanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,20 +58,17 @@
         }
       }
     },
-    "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj": {
+    "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj",
         "projectName": "MISA.Infrastructure",
-        "projectPath": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\mvthanh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mvthanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,8 +82,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
-                "projectPath": "C:\\Users\\thanh\\OneDrive\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
+              "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
+                "projectPath": "C:\\Users\\mvthanh\\Desktop\\xinchao\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
               }
             }
           }

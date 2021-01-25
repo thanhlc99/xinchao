@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace MISA.CukCuk.Api.Controllers
 {
-   
+    /// <summary>
+    /// điều khiển lấy dữ liệu bảng PositionGroups
+    /// </summary>
     public class PositionGroupsController : BaseEntityController<PositionGroup>
     {
         IBaseService<PositionGroup> _baseService;

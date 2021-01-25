@@ -40,10 +40,10 @@ namespace MISA.Infrastructure.Repository
             dbConnection.Open();
             using (var transaction = dbConnection.BeginTransaction())
             {
-                    var parameters = MappingDbType(entity);
-                    //thi thi câu lệnh
-                    res = dbConnection.Execute($"Proc_Insert{tableName}", parameters, commandType: CommandType.StoredProcedure);
-                    transaction.Commit();
+                var parameters = MappingDbType(entity);
+                //thi thi câu lệnh
+                res = dbConnection.Execute($"Proc_Insert{tableName}", parameters, commandType: CommandType.StoredProcedure);
+                transaction.Commit();
             }
             //trả về kết quả (số bản ghi thêm mới được)
             return res;
@@ -56,19 +56,19 @@ namespace MISA.Infrastructure.Repository
             dbConnection.Open();
             using (var transaction = dbConnection.BeginTransaction())
             {
-                 var param = new DynamicParameters();
+                var param = new DynamicParameters();
                 param.Add($"@{tableName}Id", dbType: DbType.String, value: entityId.ToString(), direction: ParameterDirection.Input);
-                    //thi thi câu lệnh
-                    res = dbConnection.Execute($"Proc_Delete{tableName}ById", param,commandType: CommandType.StoredProcedure);
+                //thi thi câu lệnh
+                res = dbConnection.Execute($"Proc_Delete{tableName}ById", param, commandType: CommandType.StoredProcedure);
                 transaction.Commit();
             }
             //trả về kết quả(số bản ghi bị ảnh hưởng)
             return res;
         }
 
-        public  IEnumerable<TEntity> GetEntities()
+        public IEnumerable<TEntity> GetEntities()
         {
-             //khởi tạo commandText
+            //khởi tạo commandText
             var entitys = dbConnection.Query<TEntity>($"Proc_Get{tableName}s", commandType: CommandType.StoredProcedure);
             //trả về dữ liệu
             return entitys;
@@ -79,7 +79,7 @@ namespace MISA.Infrastructure.Repository
             //khởi tạo commandText
             var param = new DynamicParameters();
             param.Add($"@{tableName}Id", dbType: DbType.String, value: entityId.ToString(), direction: ParameterDirection.Input);
-            var entitys = dbConnection.Query<TEntity>($"Proc_Get{tableName}ById",param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            var entitys = dbConnection.Query<TEntity>($"Proc_Get{tableName}ById", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
             //trả về dữ liệu
             return entitys;
         }
@@ -91,11 +91,11 @@ namespace MISA.Infrastructure.Repository
             dbConnection.Open();
             using (var transaction = dbConnection.BeginTransaction())
             {
-                    var parameters = MappingDbType(entity);
-                    //khởi tạo commandText
-                    res = dbConnection.Execute($"Proc_Update{tableName}", parameters, commandType: CommandType.StoredProcedure);
-                    //trả về dữ liệu
-                    transaction.Commit();
+                var parameters = MappingDbType(entity);
+                //khởi tạo commandText
+                res = dbConnection.Execute($"Proc_Update{tableName}", parameters, commandType: CommandType.StoredProcedure);
+                //trả về dữ liệu
+                transaction.Commit();
             }
             return res;
         }
@@ -129,7 +129,7 @@ namespace MISA.Infrastructure.Repository
             }
             return parameters;
         }
-   
+
         public TEntity GetEntityByProperty(TEntity entity, PropertyInfo property)
         {
             //lấy tên

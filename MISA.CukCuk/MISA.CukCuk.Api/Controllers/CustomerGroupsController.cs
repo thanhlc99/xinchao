@@ -9,15 +9,20 @@ using System.Threading.Tasks;
 
 namespace MISA.CukCuk.Api.Controllers
 {
-    [Route("api/v1/[controller]")]
-    [ApiController]
+    /// <summary>
+    /// điều khiển lấy dữ liệu bảng CustomerGroups
+    /// </summary>
     public class CustomerGroupsController : BaseEntityController<CustomerGroup>
     {
+        #region Declare
         IBaseService<CustomerGroup> _baseService;
+        #endregion
+
+        #region constructor
         public CustomerGroupsController(IBaseService<CustomerGroup> baseService):base(baseService)
         {
             _baseService = baseService;
         }
-
+        #endregion
     }
 }
