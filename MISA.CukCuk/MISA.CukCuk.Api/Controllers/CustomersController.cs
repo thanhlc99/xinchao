@@ -6,16 +6,22 @@ using MISA.ApplicationCore.Enums;
 namespace MISA.CukCuk.Api.Controllers
 {
     /// <summary>
-    /// điều khiển lấy dữ liệu bảng Customer
+    /// Quản lý các api thao tác với bảng customer
     /// </summary>
     public class CustomersController : BaseEntityController<Customer>
     {
+        #region Declare
         ICustomerService _customerService;
+        #endregion
+
+        #region Constructor
         public CustomersController(ICustomerService customerService) : base(customerService)
         {
             _customerService = customerService;
         }
+        #endregion
 
+        #region Method
         /// <summary>
         /// lấy danh sách khách hàng theo các tiêu chí
         /// </summary>
@@ -27,6 +33,7 @@ namespace MISA.CukCuk.Api.Controllers
         {
             return Ok(_customerService.GetCustomersFilter(specs));
         }
+
         /// <summary>
         /// thực hiện lấy thông tin theo số trang truyền lên
         /// </summary>
@@ -38,6 +45,7 @@ namespace MISA.CukCuk.Api.Controllers
         {
             return Ok(_customerService.GetCustomersByPage(page));
         }
+
         /// <summary>
         /// thực hiện lấy số lượng bản ghi
         /// </summary>
@@ -48,6 +56,6 @@ namespace MISA.CukCuk.Api.Controllers
         {
             return Ok(_customerService.GetCustomerCount());
         }
-
+        #endregion
     }
 }

@@ -10,14 +10,21 @@ using System.Threading.Tasks;
 namespace MISA.CukCuk.Api.Controllers
 {
     /// <summary>
-    /// điều khiển lấy dữ liệu bảng PositionGroups
+    /// Quản lý các api thao tác với  bảng PositionGroups
     /// </summary>
     public class PositionGroupsController : BaseEntityController<PositionGroup>
     {
+
+        #region Declare
         IBaseService<PositionGroup> _baseService;
+        #endregion
+
+        #region constructor
         public PositionGroupsController(IBaseService<PositionGroup> baseService):base(baseService)
         {
             _baseService = baseService;
         }
+        #endregion
+
     }
 }

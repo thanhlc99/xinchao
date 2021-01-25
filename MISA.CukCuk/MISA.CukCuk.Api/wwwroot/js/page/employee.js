@@ -47,6 +47,74 @@ class Employee extends BaseJs {
         //load dữ liệu trang cuối cùng (phân trang)
         $('.icon_lastpage').click(me.lastPage.bind(me));
 
+        //#region hiển thị thông báo message khi validate dữ liệu
+        $('#txtFullName').hover(function () {
+            var value = $(this).attr("class");
+            if (value) {
+                var msg = `<div class="message">
+                                Trường này không được để trống!
+                            </div>`;
+                $('#msg1').append(msg);
+            }
+        }, function () {
+                $('#msg1').empty();
+        }
+        );
+
+        $('#txtIdentityCardNumber').hover(function () {
+            var value = $(this).attr("class");
+            if (value) {
+                var msg = `<div class="message">
+                                Trường này không được để trống!
+                            </div>`;
+                $('#msg2').append(msg);
+            }
+        }, function () {
+                $('#msg2').empty();
+        }
+        );
+
+
+        $('#txtPhoneNumber').hover(function () {
+            var value = $(this).attr("class");
+            if (value) {
+                var msg = `<div class="message">
+                                Trường này không được để trống!
+                            </div>`;
+                $('#msg3').append(msg);
+            }
+        }, function () {
+                $('#msg3').empty();
+        }
+        );
+
+        $('#txtEmail').hover(function () {
+            var value = $(this).attr("class");
+            if (value) {
+                var msg = `<div class="message">
+                               Email chưa đúng định dạng!
+                            </div>`;
+                $('#msg4').append(msg);
+            }
+        }, function () {
+                $('#msg4').empty();
+        }
+        );
+
+        $('#txtEmployeeCode').hover(function () {
+            var value = $(this).attr("class");
+            if (value) {
+                var msg = `<div class="message">
+                                Trường này không được để trống!
+                            </div>`;
+                $('#msg').append(msg);
+            }
+        }, function () {
+            $('#msg').empty();
+        }
+        );
+        //#endregion
+
     }
 
     setFilter() {

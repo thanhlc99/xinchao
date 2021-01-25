@@ -11,8 +11,11 @@ namespace MISA.ApplicationCore.Services
 {
     public class BaseService<TEntity> : IBaseService<TEntity> where TEntity:BaseEntiy
     {
+        #region Declare
         IBaseRepository<TEntity> _baseRepository;
         ServiceResult _serviceResult;
+        #endregion
+
         #region constructor
         public BaseService(IBaseRepository<TEntity> baseRepository)
         {

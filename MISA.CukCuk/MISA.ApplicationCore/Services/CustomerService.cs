@@ -10,37 +10,18 @@ namespace MISA.ApplicationCore.Services
 {
     public class CustomerService : BaseService<Customer>, ICustomerService
     {
+        #region Declare
         ICustomerRepository _customerRepository;
+        #endregion
+
         #region constructor
         public CustomerService(ICustomerRepository customerRepository):base(customerRepository)
         {
             _customerRepository = customerRepository;
         }
-
-       
         #endregion
 
-        //public override int Add(Customer entity)
-        //{
-        //    //validate thông tin
-        //    var isValid = true;
-        //    //check trùng mã khách hàng
-        //    var customerDuplicate = _customerRepository.GetCustomerByCode(entity.CustomerCode);
-        //    if(customerDuplicate!=null)
-        //    {
-        //        isValid = false;
-        //    }    
-        //    if(isValid)
-        //    {
-        //        var res = base.Add(entity);
-        //        return res;
-        //    }
-        //    else
-        //    {
-        //        return 0;
-        //    }
-        //}
-
+        #region method
         public List<Customer> GetCustomersFilter(string specs)
         {
             return _customerRepository.GetCustomersFilter(specs);
@@ -56,5 +37,6 @@ namespace MISA.ApplicationCore.Services
         {
             return _customerRepository.GetCustomerCount();
         }
+        #endregion
     }
 }

@@ -9,7 +9,9 @@ namespace MISA.ApplicationCore.Services
 {
     public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
+        #region Declare
         IEmployeeRepository _employeeRepository;
+        #endregion
 
         #region constructor
         public EmployeeService(IEmployeeRepository employeeRepository):base(employeeRepository)

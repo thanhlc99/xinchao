@@ -36,5 +36,7 @@ namespace MISA.ApplicationCore.Interfaces
         /// <returns> mã nhân viên lớn nhất</returns>
         /// CreatedBy MVThanh(24/01/2021)
         string GetEmployeeCodeMax();
+
+
     }
 }

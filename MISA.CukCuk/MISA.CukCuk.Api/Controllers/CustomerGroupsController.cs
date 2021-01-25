@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MISA.CukCuk.Api.Controllers
 {
     /// <summary>
-    /// điều khiển lấy dữ liệu bảng CustomerGroups
+    /// Quản lý các api thao tác với bảng CustomerGroups
     /// </summary>
     public class CustomerGroupsController : BaseEntityController<CustomerGroup>
     {

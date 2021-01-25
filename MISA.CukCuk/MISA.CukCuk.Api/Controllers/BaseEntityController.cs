@@ -13,7 +13,10 @@ namespace MISA.CukCuk.Api.Controllers
     [ApiController]
     public class BaseEntityController<TEntity> : ControllerBase
     {
+
+        #region Declare
         IBaseService<TEntity> _baseService;
+        #endregion
 
         #region constructor
         public BaseEntityController(IBaseService<TEntity> baseService)
@@ -22,7 +25,7 @@ namespace MISA.CukCuk.Api.Controllers
         }
         #endregion
 
-        #region method
+        #region Method
         /// <summary>
         /// Lấy toàn bộ
         /// </summary>
@@ -129,5 +132,6 @@ namespace MISA.CukCuk.Api.Controllers
             }
         }
         #endregion
+
     }
 }

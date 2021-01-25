@@ -21,9 +21,39 @@
     background-color: #F65454;
     border: 1px solid #F65454;
 }
-.m-row .mssg {
+/*.m-row .mssg {
     position: absolute;
     z-index: 9999;
     top: 0px;
     left: 289px;
+}*/
+#msg1 {
+    top: 0px;
+    left: 530px;
+    z-index: 9999;
+    position: absolute;
+}
+#msg2 {
+    top: 109px;
+    left: 280px;
+    z-index: 9999;
+    position: absolute;
+}
+#msg3 {
+    top: 238px;
+    left: 520px;
+    z-index: 9999;
+    position: absolute;
+}
+#msg4 {
+    top: 240px;
+    left: 285px;
+    z-index: 9999;
+    position: absolute;
+}
+#msg {
+    top: 0px;
+    left: 285px;
+    z-index: 9999;
+    position: absolute;
 }

@@ -6,16 +6,22 @@ using System;
 namespace MISA.CukCuk.Api.Controllers
 {
     /// <summary>
-    /// điều khiển lấy dữ liệu bảng Employee
+    /// Quản lý các api thao tác với  bảng Employee
     /// </summary>
     public class EmployeesController : BaseEntityController<Employee>
     {
-
+        #region Declare
         IEmployeeService _employeeService;
+        #endregion
+
+        #region constructor
         public EmployeesController(IEmployeeService employeeService) : base(employeeService)
         {
             _employeeService = employeeService;
         }
+        #endregion
+
+        #region Method
         /// <summary>
         /// lấy danh sách nhân viên theo các tiêu chí theo mã, tên hoặc số điện thoại của nhân viên
         /// </summary>
@@ -60,6 +66,7 @@ namespace MISA.CukCuk.Api.Controllers
         {
             return Ok(_employeeService.GetEmployeeCodeMax());
         }
+        #endregion
 
     }
 }

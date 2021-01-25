@@ -23,13 +23,15 @@ namespace MISA.Infrastructure.Repository
 
         }
         #endregion
+
         #region Method
         public IEnumerable<Employee> GetEmployeesByPage(Pager pager)
         {
-
+            //khai báo các tham số đầu vào
             var param = new DynamicParameters();
             param.Add("@Offset", dbType: DbType.Int32, value: pager.Offset, direction: ParameterDirection.Input);
             param.Add("@PageSize", dbType: DbType.Int32, value: pager.PageSize, direction: ParameterDirection.Input);
+            //thực hiện truy vấn lấy kết quả
             var results = dbConnection.Query<Employee>("Proc_GetEmployeeByPage", param, commandType: CommandType.StoredProcedure);
             return results;
 
@@ -55,17 +57,34 @@ namespace MISA.Infrastructure.Repository
                 }
                 else
                 {
+                    //khai báo các tham số đầu vào
                     var parameters = new DynamicParameters();
                     parameters.Add("@EmployeeCode", input, DbType.String);
                     parameters.Add("@FullName", input, DbType.String);
                     parameters.Add("@PhoneNumber", input, DbType.String);
                     parameters.Add("@PositionGroupId", positionId, DbType.String);
                     parameters.Add("@DepartmentGroupId", departmentId, DbType.String);
+                    //parameters.Add("@Offset", dbType: DbType.Int32, value: pages.Offset, direction: ParameterDirection.Input);
+                    //parameters.Add("@PageSize", dbType: DbType.Int32, value: pages.PageSize, direction: ParameterDirection.Input);
+                    //thực hiện truy vấn lấy kết quả
                     employees = dbConnection.Query<Employee>("Proc_GetEmployeeFilter", parameters, commandType: CommandType.StoredProcedure).ToList();
-
                 }
             }
-           
+            else
+            {
+                //khai báo các tham số đầu vào
+                var parameters = new DynamicParameters();
+                parameters.Add("@EmployeeCode", input, DbType.String);
+                parameters.Add("@FullName", input, DbType.String);
+                parameters.Add("@PhoneNumber", input, DbType.String);
+                parameters.Add("@PositionGroupId", positionId, DbType.String);
+                parameters.Add("@DepartmentGroupId", departmentId, DbType.String);
+                //parameters.Add("@Offset", dbType: DbType.Int32, value: pages.Offset, direction: ParameterDirection.Input);
+                //parameters.Add("@PageSize", dbType: DbType.Int32, value: pages.PageSize, direction: ParameterDirection.Input);
+                //thực hiện truy vấn lấy kết quả
+                employees = dbConnection.Query<Employee>("Proc_GetEmployeeFilter", parameters, commandType: CommandType.StoredProcedure).ToList();
+            }
+
             return employees;
         }
 
