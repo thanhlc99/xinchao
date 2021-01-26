@@ -92,4 +92,8 @@ select {
     text-align: right;
     padding-right: 48px;
 }
+input[type='checkbox'] {
+    width: 13px;
+}
+
 /*end css content dialog*/

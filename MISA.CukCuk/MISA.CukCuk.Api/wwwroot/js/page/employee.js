@@ -124,6 +124,10 @@ class Employee extends BaseJs {
 
         //#endregion
 
+        ////check select tất cả bản ghi
+        //$('#all').click(function () {
+        //    $("input[type='checkbox']:not(#all)").prop("checked", true);
+        //});
        
     }
 

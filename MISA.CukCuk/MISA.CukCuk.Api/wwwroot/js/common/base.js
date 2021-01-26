@@ -220,7 +220,16 @@ class BaseJs {
                         $.each(columns, function (index, th) {
                             var td = $(`<td></td>`);
                             var fielNames = $(th).attr('fieldName');//lấy cái để map dữ liệu vào
+
+                            //var value = "";
+                            //tạo các checkbox để thực hiện xóa nhiều bản ghi
+                            //if (fielNames == "checkBox") {
+                            //    value = `<input type="checkbox" />`;
+                            //}
+                            //else {
                             var value = obj[fielNames];//lấy thông tin dữ liệu map tương ứng
+                            //}
+
                             var formatType = $(th).attr('formatType');//lấy dữ liệu để map format date
                             switch (formatType) {
                                 case "d/m/y":
