@@ -113,8 +113,18 @@ class Employee extends BaseJs {
             $('#msg').empty();
         }
         );
+
+        $('#txtIdentityCardNumber, #txtPhoneNumber, #txtEmail, #txtEmployeeCode,#txtFullName').keyup(function () {
+            $('#msg').empty();
+            $('#msg4').empty();
+            $('#msg3').empty();
+            $('#msg2').empty();
+            $('#msg1').empty();
+        });
+
         //#endregion
 
+       
     }
 
     setFilter() {
@@ -142,8 +152,10 @@ class Employee extends BaseJs {
         //thực hiện load dữ liệu select box
         loadCombobox("/api/v1/DepartmentGroups");
         loadCombobox("/api/v1/PositionGroups");
+        updateNumberPage(1, 1);
+        viewInforPage(1, 'nhân viên');
     }
-
+    //ghi đè
     btnAddOnClick() {
         super.btnAddOnClick();
         //lấy ra mã nhân viên đã tăng lên 1 đơn vị
@@ -157,6 +169,7 @@ class Employee extends BaseJs {
             console.log(res);
         })
     }
+   
     /**======================================
    * Hàm chức năng phân trang
    * Created by mvthanh (19/01/2021)
@@ -171,6 +184,7 @@ class Employee extends BaseJs {
             BaseJs.n = Math.ceil(res / 10);
             updateNumberPage(1, BaseJs.n);
             viewInforPage(1, 'nhân viên');
+
         }).fail(function (res) {
             console.log(res);
         })
@@ -275,6 +289,7 @@ class Employee extends BaseJs {
             var positionId = $('select[filter="positionId"]').val();
             me.filter = "/api/v1/employees/filters?specs=" + value + "&departmentId=" + departmentId + "&positionId=" + positionId;
             me.loadData();
+               
         }
         catch (e) {
             console.log(e);

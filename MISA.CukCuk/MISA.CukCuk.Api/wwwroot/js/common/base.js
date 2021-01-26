@@ -333,12 +333,12 @@ class BaseJs {
             var url = me.domainNV;
             if (me.formMethod == "Edit") {
                 method = "PUT";
-                // if (me.tableName == "Employee") {
-                //    objEmtity.EmployeeId = me.objId;
-                //}
-                //else {
-                //    objEmtity.CustomerId = me.objId;
-                //}
+                 if (me.tableName == "Employee") {
+                     objEntity.EmployeeId = me.objId;
+                }
+                else {
+                     objEntity.CustomerId = me.objId;
+                }
                 //objEntity.CustomerId = me.objId;
                 url = url + "/" + me.objId;
             }

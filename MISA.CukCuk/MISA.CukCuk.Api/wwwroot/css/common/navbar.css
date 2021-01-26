@@ -62,10 +62,9 @@
         text-decoration: none;
         color:#000000;
     }
-
             .navbar .navbar-content .nav-item:hover {
                 background-color: #e5e5e5;
-                color: #000000;
+                color: #000000!important;
                 font-family: GoogleSans-Medium;
             }
 
@@ -99,5 +98,9 @@
 
 .nav-icon-6 {
     background-image: url('/content/icon/setting.png');
+}
+.click-item {
+    background-color: #019160;
+    color:#FFFFFF!important;
 }
 /*=====================end menu left====================*/

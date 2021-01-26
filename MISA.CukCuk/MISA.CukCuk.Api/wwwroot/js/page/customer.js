@@ -98,7 +98,7 @@ class Customer extends BaseJs {
             this.loadData();
             $('.number').empty();
             updateNumberPage(value, BaseJs.n);
-            viewInforPage(value);
+            viewInforPage(value, 'khách hàng');
         }
         catch (e) {
             console.log(e);
@@ -116,7 +116,7 @@ class Customer extends BaseJs {
                 this.loadData();
                 $('.number').empty();
                 updateNumberPage((value - 1), BaseJs.n);
-                viewInforPage(value - 1);
+                viewInforPage(value - 1, 'khách hàng');
             }
         }
         catch (e) {
@@ -135,7 +135,7 @@ class Customer extends BaseJs {
                 this.loadData();
                 $('.number').empty();
                 updateNumberPage((Number(value) + 1), BaseJs.n);
-                viewInforPage(Number(value) + 1);
+                viewInforPage(Number(value) + 1, 'khách hàng');
             }
         }
         catch (e) {
@@ -152,7 +152,7 @@ class Customer extends BaseJs {
             this.loadData();
             $('.number').empty();
             updateNumberPage(1, BaseJs.n);
-            viewInforPage(1);
+            viewInforPage(1, 'khách hàng');
         }
         catch (e) {
             console.log(e);
@@ -168,7 +168,7 @@ class Customer extends BaseJs {
             this.loadData();
             $('.number').empty();
             updateNumberPage(BaseJs.n, BaseJs.n);
-            viewInforPage(BaseJs.n);
+            viewInforPage(BaseJs.n, 'khách hàng');
         }
         catch (e) {
             console.log(e);

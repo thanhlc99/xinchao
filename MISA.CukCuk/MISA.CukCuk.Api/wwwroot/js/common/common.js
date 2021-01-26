@@ -79,6 +79,7 @@ function formatYYMMDD(date) {
  * @param {any} n tổng số trang
  */
 function updateNumberPage(i, n) {
+    $('.number').empty();
     var j = 1;
     var numberPage = ``;
     for (i; i <= n; i++) {
